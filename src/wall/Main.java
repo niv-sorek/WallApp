@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 public class Main extends Application {
 
 
@@ -34,12 +35,12 @@ public class Main extends Application {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "view.fxml"));
-        Parent root = (Parent) loader.load();
+        Parent root = loader.load();
         WallController ctrl = loader.getController();
         ctrl.initialize(new Wall());
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
-        ;
+
     }
 }
