@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 
 //TEST COMMENT
 //New Text
+//Hello
 public class Wall {
 
     /**
