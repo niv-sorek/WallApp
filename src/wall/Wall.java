@@ -4,7 +4,7 @@ import Dimensions.HeightProperty;
 import Dimensions.WeightProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-
+//TEST COMMENT
 public class Wall {
 
     /**
@@ -215,10 +215,7 @@ public class Wall {
         }
 
     }
-//public double calcKa(doubkle)
-//{
-//
-//}
+
     private double getFaceSlopePercent() {
         return this.getFaceSlope() / 100;
     }
