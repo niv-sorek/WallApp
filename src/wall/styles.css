@@ -1,0 +1,11 @@
+.title {
+    -fx-font-weight: bold;
+}
+
+.text-givens{
+    -fx-font-size: 12;
+    -fx-fill-height: true;
+    -fx-text-alignment: center;
+
+
+}
