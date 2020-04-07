@@ -4,7 +4,9 @@ import Dimensions.HeightProperty;
 import Dimensions.WeightProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+
 //TEST COMMENT
+//New Text
 public class Wall {
 
     /**
@@ -201,7 +203,7 @@ public class Wall {
     public final void calc() {
         try {
             this.weight.setD2((this.height.getHTotal() - this.height.getD2()) * this.getFaceSlopePercent());
-           // this.weight.setD5(this.weight.getD() - this.weight.getD1() - this.weight.getD2() - this.weight.getD3() - this.weight.getD4());
+            // this.weight.setD5(this.weight.getD() - this.weight.getD1() - this.weight.getD2() - this.weight.getD3() - this.weight.getD4());
             beta = 180 - Math.toDegrees(Math.atan((this.height.getHTotal() - this.height.getD3()) / (this.weight.getD5() + this.weight.getD4())));
 
             double a, b, c, d;
@@ -211,7 +213,7 @@ public class Wall {
             d = Math.sin(Math.toRadians(beta - getGroundAngle()));
             this.Ka = a / (b + Math.sqrt(c / d));
             this.Pa = (groundWeight.get() * getKa() * Math.pow(this.height.getHTotal(), 2)) / 2;
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
 
     }
