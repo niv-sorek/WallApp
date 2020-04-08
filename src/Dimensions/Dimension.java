@@ -1,11 +1,11 @@
 package Dimensions;
 
 public abstract class Dimension {
-    double d1 = 0;
-    double d2 = 0;
-    double d3 = 0;
-    double d4 = 0;
-    double d = 0;
+    double d1;
+    double d2;
+    double d3;
+    double d4;
+    double d;
 
     public Dimension(double d1, double d2, double d3, double d4, double d) {
         this.d1 = d1;

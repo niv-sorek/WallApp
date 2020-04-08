@@ -5,7 +5,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.util.converter.NumberStringConverter;
@@ -34,7 +33,7 @@ public class WallController {
     @FXML
     public TextField txtFrictionCoeff;
     @FXML
-    public TextField txtCohessia;
+    public TextField txtCohesion;
     @FXML
     public TextField txtSpatialWeight;
     @FXML
@@ -81,20 +80,17 @@ public class WallController {
         this.model = model;
     }
 
-    public void KeyPressed(KeyEvent keyEvent) {
-    }
-
     @FXML
     public void initialize(Wall model) {
         this.setModel(model);
         txtGroundW.textProperty().bindBidirectional(model.gammaProperty(), new NumberStringConverter());
         txtInnerFrictionAngle.textProperty().bindBidirectional(model.fiProperty(), new NumberStringConverter());
-        txtFrictionAngle.textProperty().bindBidirectional(model.lanbdaProperty(), new NumberStringConverter());
+        txtFrictionAngle.textProperty().bindBidirectional(model.lambdaProperty(), new NumberStringConverter());
         txtGroundAngle.textProperty().bindBidirectional(model.iProperty(), new NumberStringConverter());
         txtEffort.textProperty().bindBidirectional(model.maxEffortProperty(), new NumberStringConverter());
         txtBaseAngle.textProperty().bindBidirectional(model.thetaProperty(), new NumberStringConverter());
         txtFrictionCoeff.textProperty().bindBidirectional(model.miuProperty(), new NumberStringConverter());
-        txtCohessia.textProperty().bindBidirectional(model.coProperty(), new NumberStringConverter());
+        txtCohesion.textProperty().bindBidirectional(model.coProperty(), new NumberStringConverter());
         txtSpatialWeight.textProperty().bindBidirectional(model.qProperty(), new NumberStringConverter());
         txtWallWeight.textProperty().bindBidirectional(model.gwProperty(), new NumberStringConverter());
         txtFaceSlope.textProperty().bindBidirectional(model.faceSlopeProperty(), new NumberStringConverter());
@@ -104,7 +100,7 @@ public class WallController {
                 dataGrid.getChildren()) {
             if (node instanceof TextField)
                 ((TextField) node).textProperty().addListener((observableValue, s, t1) -> {
-                    if (!t1.matches("\\d{0,4}([\\.]\\d{0,2})?")) {
+                    if (!t1.matches("\\d{0,4}([.]\\d{0,2})?")) {
                         ((TextField) node).setText(s);
                         return;
                     }

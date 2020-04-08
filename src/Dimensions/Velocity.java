@@ -15,6 +15,7 @@ public class Velocity extends Dimension {
         super(d1, d2, d3, d4, d);
     }
 
+    @SuppressWarnings("EmptyMethod")
     private void update() {
 //        V1 = height.getH3() * weight.getTotal();
 //        V2 = (weight.getW2() * (height.getTotal() - height.getH3())) / 2;

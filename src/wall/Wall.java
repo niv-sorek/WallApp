@@ -19,66 +19,65 @@ public class Wall {
      * G
      */
     private final DoubleProperty gamma;
-    HeightProperty height;
-    WeightProperty weight;
-    VelocityProperty velocity;
+    final HeightProperty height;
+    final WeightProperty weight;
+    final VelocityProperty velocity;
     double Ka = 0.75;
     double Pa = 0;
     /**
      * זוית חיכוך פנימית
      * fi
      */
-    private DoubleProperty fi;
+    private final DoubleProperty fi;
     /**
      * זווית חיכוך קרקע- גב הקיר
      * lambda
      */
-    private DoubleProperty lanbda;
+    private final DoubleProperty lambda;
     /**
      * שיפוע הקרקע טבעית במעלות
      * i
      */
-    private DoubleProperty i;
+    private final DoubleProperty i;
     /**
      * מאמץ מגע מותר מקסימלי
      */
-    private DoubleProperty maxEffort;
+    private final DoubleProperty maxEffort;
     /**
      * שיםוע בסיס הקיר במעלות
      * Theta
      */
-    private DoubleProperty theta;
+    private final DoubleProperty theta;
     /**
      * מקדם חיכוך בסיס הקיר-קרקע
      * miu
      */
-    private DoubleProperty miu;
+    private final DoubleProperty miu;
     /**
      * קוהזיה
      * Co
      */
-    private DoubleProperty Co;
+    private final DoubleProperty Co;
     /**
      * עוומס מפורס על הקרקע
      * Q
      */
-    private DoubleProperty q;
+    private final DoubleProperty q;
     /**
      * משקל מרחבי של הקיר
      * Gw
      */
-    private DoubleProperty Gw;
-    private DoubleProperty faceSlope;
-    private DoubleProperty teta;
+    private final DoubleProperty Gw;
+    private final DoubleProperty faceSlope;
 
     private double beta;
 
     // Constructors:
-    public Wall(double gamma, double fi, double lanbda, double i, double maxEffort, double theta,
+    public Wall(double gamma, double fi, double lambda, double i, double maxEffort, double theta,
                 double miu, double co, double q, double gw) {
         this.gamma = new SimpleDoubleProperty(gamma);
         this.fi = new SimpleDoubleProperty(fi);
-        this.lanbda = new SimpleDoubleProperty(lanbda);
+        this.lambda = new SimpleDoubleProperty(lambda);
         this.i = new SimpleDoubleProperty(i);
         this.maxEffort = new SimpleDoubleProperty(maxEffort);
         this.theta = new SimpleDoubleProperty(theta);
@@ -87,7 +86,6 @@ public class Wall {
         this.q = new SimpleDoubleProperty(q);
         this.Gw = new SimpleDoubleProperty(gw);
         this.faceSlope = new SimpleDoubleProperty(4);
-        this.teta = new SimpleDoubleProperty(10);
         this.height = new HeightProperty(0.8, .4, .4, 0, 1);
         this.weight = new WeightProperty(.1, 0, 0.2, 0, 0, 1.35);
         this.velocity = new VelocityProperty(this.height, this.weight);
@@ -107,8 +105,8 @@ public class Wall {
         return fi;
     }
 
-    public DoubleProperty lanbdaProperty() {
-        return lanbda;
+    public DoubleProperty lambdaProperty() {
+        return lambda;
     }
 
     public DoubleProperty iProperty() {
@@ -183,12 +181,12 @@ public class Wall {
         this.fi.set(fi);
     }
 
-    public double getLanbda() {
-        return lanbda.get();
+    public double getLambda() {
+        return lambda.get();
     }
 
-    public void setLanbda(float lanbda) {
-        this.lanbda.set(lanbda);
+    public void setLambda(float lambda) {
+        this.lambda.set(lambda);
     }
 
     public double getI() {
@@ -232,9 +230,9 @@ public class Wall {
     }
 
     //--------
-    // Calculation Faunctions
+    // Calculation Functions
     public double getPh() {
-        return (this.getPa() * Math.cos(this.getLanbda() + this.teta.get()));
+        return (this.getPa() * Math.cos(this.getLambda() + this.theta.get()));
     }
 
     public double getQh() {
@@ -262,7 +260,7 @@ public class Wall {
     }
 
     double getPv() {
-        return getPa() * Math.sin(Math.toRadians(getLanbda() + teta.get()));
+        return getPa() * Math.sin(Math.toRadians(getLambda() + theta.get()));
     }
 
     double getVw() {
@@ -324,7 +322,7 @@ public class Wall {
         return getSmr() / getSMt();
     }
 
-    // // TODO: 09/04/2020 coplete func with sin cos
+    // // TODO: 09/04/2020 complete func with sin cos
     double getFss() {
         return getSv() * getMiu() / getSMt();
     }
@@ -334,8 +332,8 @@ public class Wall {
         double a, b, c, d;
         beta = 180 - Math.toDegrees(Math.atan((this.height.getHTotal() - this.height.getD3()) / (this.weight.getD5() + this.weight.getD4())));
         a = (WallUtils.cosec(Math.toRadians(beta)) * Math.sin(Math.toRadians(beta - getFi())));
-        b = Math.sin(Math.toRadians(beta + getLanbda()));
-        c = Math.sin(Math.toRadians(getFi() + getLanbda())) * Math.sin(Math.toRadians(getFi() - getI()));
+        b = Math.sin(Math.toRadians(beta + getLambda()));
+        c = Math.sin(Math.toRadians(getFi() + getLambda())) * Math.sin(Math.toRadians(getFi() - getI()));
         d = Math.sin(Math.toRadians(beta - getI()));
         testPrintKa(a, c, d, b);
         return a / (b + Math.sqrt(c / d));
@@ -345,8 +343,8 @@ public class Wall {
         System.out.println("\n\nbeta=" + beta + "\tfi= " + getFi() + "\t\n");
         System.out.printf("a = (cosec(toRadians(%.2f)) * sin(toRadians(%.2f - %.2f)))\n", beta, beta, getFi());
         System.out.printf("b = sin(toRadians(%.2f + %.2f))\n", beta, getFi());
-        System.out.printf("c = sin(toRadians(%.2f +%.2f)) * sin(toRadians(%.2f - %.2f))\n", getFi(), getLanbda(), getFi(), getLanbda());
-        System.out.printf("d = sin(toRadians(%.2f - %.2f))\n\n", beta, getLanbda());
+        System.out.printf("c = sin(toRadians(%.2f +%.2f)) * sin(toRadians(%.2f - %.2f))\n", getFi(), getLambda(), getFi(), getLambda());
+        System.out.printf("d = sin(toRadians(%.2f - %.2f))\n\n", beta, getLambda());
 
         System.out.println("a / (b + Math.sqrt(c / d)\n");
         System.out.printf("%.2f / (%.2f + Math.sqrt(%.2f / %.2f)\n", a, b, c, d);

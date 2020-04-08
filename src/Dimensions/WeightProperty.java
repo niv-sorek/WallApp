@@ -7,8 +7,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 public class WeightProperty extends DimensionProperty {
 
 
-    DoubleProperty d5;
-    Weight w;
+    final DoubleProperty d5;
 
     public WeightProperty(double d1, double d2, double d3, double d4, double d5, double d) {
         super(d1, d2, d3, d4, d);
@@ -33,7 +32,4 @@ public class WeightProperty extends DimensionProperty {
         return d5.get();
     }
 
-    public DoubleProperty d5Property() {
-        return d5;
-    }
 }
