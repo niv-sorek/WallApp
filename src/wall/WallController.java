@@ -85,16 +85,16 @@ public class WallController {
     @FXML
     public void initialize(Wall model) {
         this.setModel(model);
-        txtGroundW.textProperty().bindBidirectional(model.groundWeightProperty(), new NumberStringConverter());
-        txtInnerFrictionAngle.textProperty().bindBidirectional(model.innerFrictionAngleProperty(), new NumberStringConverter());
-        txtFrictionAngle.textProperty().bindBidirectional(model.groundFrictionAngleProperty(), new NumberStringConverter());
-        txtGroundAngle.textProperty().bindBidirectional(model.groundAngleProperty(), new NumberStringConverter());
+        txtGroundW.textProperty().bindBidirectional(model.gammaProperty(), new NumberStringConverter());
+        txtInnerFrictionAngle.textProperty().bindBidirectional(model.fiProperty(), new NumberStringConverter());
+        txtFrictionAngle.textProperty().bindBidirectional(model.lanbdaProperty(), new NumberStringConverter());
+        txtGroundAngle.textProperty().bindBidirectional(model.iProperty(), new NumberStringConverter());
         txtEffort.textProperty().bindBidirectional(model.maxEffortProperty(), new NumberStringConverter());
-        txtBaseAngle.textProperty().bindBidirectional(model.baseAngleProperty(), new NumberStringConverter());
-        txtFrictionCoeff.textProperty().bindBidirectional(model.frictionCoeffProperty(), new NumberStringConverter());
-        txtCohessia.textProperty().bindBidirectional(model.cohessiaProperty(), new NumberStringConverter());
-        txtSpatialWeight.textProperty().bindBidirectional(model.spatialWeightProperty(), new NumberStringConverter());
-        txtWallWeight.textProperty().bindBidirectional(model.wallWeightProperty(), new NumberStringConverter());
+        txtBaseAngle.textProperty().bindBidirectional(model.thetaProperty(), new NumberStringConverter());
+        txtFrictionCoeff.textProperty().bindBidirectional(model.miuProperty(), new NumberStringConverter());
+        txtCohessia.textProperty().bindBidirectional(model.coProperty(), new NumberStringConverter());
+        txtSpatialWeight.textProperty().bindBidirectional(model.qProperty(), new NumberStringConverter());
+        txtWallWeight.textProperty().bindBidirectional(model.gwProperty(), new NumberStringConverter());
         txtFaceSlope.textProperty().bindBidirectional(model.faceSlopeProperty(), new NumberStringConverter());
         this.model.height.bind(txtH1, txtH2, txtH3, txtH4, txtH);
         this.model.weight.bind(txtW1, txtW2, txtW3, txtW4, txtW);

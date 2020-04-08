@@ -1,6 +1,7 @@
 package wall;
 
 import Dimensions.HeightProperty;
+import Dimensions.VelocityProperty;
 import Dimensions.WeightProperty;
 import Utils.WallUtils;
 import javafx.beans.property.DoubleProperty;
@@ -8,34 +9,37 @@ import javafx.beans.property.SimpleDoubleProperty;
 
 public class Wall {
 
-    /**
-     * משקל מרחבי של הקרקע
-     * G
-     */
-    private final DoubleProperty groundWeight;
+
     // Given:
     // Calculated:
 
     HeightProperty height;
     WeightProperty weight;
+    VelocityProperty velocity;
 
     double Ka = 0.75;
     double Pa = 0;
+
+    /**
+     * משקל מרחבי של הקרקע
+     * G
+     */
+    private final DoubleProperty gamma;
     /**
      * זוית חיכוך פנימית
      * fi
      */
-    private DoubleProperty innerFrictionAngle;
+    private DoubleProperty fi;
     /**
      * זווית חיכוך קרקע- גב הקיר
      * lambda
      */
-    private DoubleProperty groundFrictionAngle;
+    private DoubleProperty lanbda;
     /**
      * שיפוע הקרקע טבעית במעלות
      * i
      */
-    private DoubleProperty groundAngle;
+    private DoubleProperty i;
     /**
      * מאמץ מגע מותר מקסימלי
      */
@@ -44,48 +48,49 @@ public class Wall {
      * שיםוע בסיס הקיר במעלות
      * Theta
      */
-    private DoubleProperty baseAngle;
+    private DoubleProperty theta;
     /**
      * מקדם חיכוך בסיס הקיר-קרקע
      * miu
      */
-    private DoubleProperty frictionCoeff;
+    private DoubleProperty miu;
     /**
      * קוהזיה
      * Co
      */
-    private DoubleProperty Cohessia;
+    private DoubleProperty Co;
     /**
      * עוומס מפורס על הקרקע
      * Q
      */
-    private DoubleProperty spatialWeight;
+    private DoubleProperty q;
     /**
      * משקל מרחבי של הקיר
      * Gw
      */
-    private DoubleProperty wallWeight;
+    private DoubleProperty Gw;
     private DoubleProperty faceSlope;
     private DoubleProperty teta;
 
     private double beta;
 
-    public Wall(double groundWeight, double innerFrictionAngle, double groundFrictionAngle, double groundAngle, double maxEffort, double baseAngle,
-                double frictionCoeff, double cohessia, double spatialWeight, double density) {
-        this.groundWeight = new SimpleDoubleProperty(groundWeight);
-        this.innerFrictionAngle = new SimpleDoubleProperty(innerFrictionAngle);
-        this.groundFrictionAngle = new SimpleDoubleProperty(groundFrictionAngle);
-        this.groundAngle = new SimpleDoubleProperty(groundAngle);
+    public Wall(double gamma, double fi, double lanbda, double i, double maxEffort, double theta,
+                double miu, double co, double q, double gw) {
+        this.gamma = new SimpleDoubleProperty(gamma);
+        this.fi = new SimpleDoubleProperty(fi);
+        this.lanbda = new SimpleDoubleProperty(lanbda);
+        this.i = new SimpleDoubleProperty(i);
         this.maxEffort = new SimpleDoubleProperty(maxEffort);
-        this.baseAngle = new SimpleDoubleProperty(baseAngle);
-        this.frictionCoeff = new SimpleDoubleProperty(frictionCoeff);
-        this.Cohessia = new SimpleDoubleProperty(cohessia);
-        this.spatialWeight = new SimpleDoubleProperty(spatialWeight);
-        this.wallWeight = new SimpleDoubleProperty(density);
+        this.theta = new SimpleDoubleProperty(theta);
+        this.miu = new SimpleDoubleProperty(miu);
+        this.Co = new SimpleDoubleProperty(co);
+        this.q = new SimpleDoubleProperty(q);
+        this.Gw = new SimpleDoubleProperty(gw);
         this.faceSlope = new SimpleDoubleProperty(4);
         this.teta = new SimpleDoubleProperty(10);
         this.height = new HeightProperty(0.8, .4, .4, 0, 1);
         this.weight = new WeightProperty(.1, 0, 0.2, 0, 0, 1.35);
+        this.velocity = new VelocityProperty(this.height, this.weight);
 
     }
 
@@ -94,20 +99,20 @@ public class Wall {
     }
 
 
-    public final DoubleProperty groundWeightProperty() {
-        return groundWeight;
+    public final DoubleProperty gammaProperty() {
+        return gamma;
     }
 
-    public DoubleProperty innerFrictionAngleProperty() {
-        return innerFrictionAngle;
+    public DoubleProperty fiProperty() {
+        return fi;
     }
 
-    public DoubleProperty groundFrictionAngleProperty() {
-        return groundFrictionAngle;
+    public DoubleProperty lanbdaProperty() {
+        return lanbda;
     }
 
-    public DoubleProperty groundAngleProperty() {
-        return groundAngle;
+    public DoubleProperty iProperty() {
+        return i;
     }
 
     public double getMaxEffort() {
@@ -118,36 +123,40 @@ public class Wall {
         return maxEffort;
     }
 
-    public double getBaseAngle() {
-        return baseAngle.get();
+    public double getTheta() {
+        return theta.get();
     }
 
-    public DoubleProperty baseAngleProperty() {
-        return baseAngle;
+    public DoubleProperty thetaProperty() {
+        return theta;
     }
 
-    public DoubleProperty frictionCoeffProperty() {
-        return frictionCoeff;
+    public DoubleProperty miuProperty() {
+        return miu;
     }
 
-    public DoubleProperty cohessiaProperty() {
-        return Cohessia;
+    public DoubleProperty coProperty() {
+        return Co;
     }
 
-    public DoubleProperty spatialWeightProperty() {
-        return spatialWeight;
+    public DoubleProperty qProperty() {
+        return q;
     }
 
-    public DoubleProperty wallWeightProperty() {
-        return wallWeight;
+    public DoubleProperty gwProperty() {
+        return Gw;
     }
 
     public double getPh() {
-        return (this.getPa() * Math.cos(this.getGroundFrictionAngle() + this.teta.get()));
+        return (this.getPa() * Math.cos(this.getLanbda() + this.teta.get()));
     }
 
     public double getQh() {
-        return spatialWeight.get() * height.getHTotal() * Ka;
+        return q.get() * height.getHTotal() * Ka;
+    }
+
+    double getSh() {
+        return getPh() + getQh();
     }
 
     public double getKa() {
@@ -162,25 +171,28 @@ public class Wall {
         return getQh() * height.getD1() / 2;
     }
 
-    double getSh() {
-        return getPh() + getQh();
-    }
-
     double getSMt() {
         return getMt1() + getMt2();
     }
 
-
-    public double Qh() {
-        return spatialWeight.get() * height.getD() * Ka;
+    double getPv() {
+        return getPa() * Math.sin(this.getLanbda() + this.teta.get());
     }
 
-    public double getGroundWeight() {
-        return groundWeight.get();
+    double getVw() {
+        return this.getGamma() * this.velocity.getVTotal();
+    }
+    double getVs()
+    {
+        return 0;
     }
 
-    public final void setGroundWeight(double groundWeight) {
-        this.groundWeight.set(groundWeight);
+    public double getGamma() {
+        return gamma.get();
+    }
+
+    public final void setGamma(double gamma) {
+        this.gamma.set(gamma);
     }
 
     public double getFaceSlope() {
@@ -199,96 +211,87 @@ public class Wall {
         return Pa;
     }
 
-    public final void calc() {
-        try {
-            this.weight.setD2((this.height.getHTotal() - this.height.getD2()) * this.getFaceSlopePercent());
-            // this.weight.setD5(this.weight.getD() - this.weight.getD1() - this.weight.getD2() - this.weight.getD3() - this.weight.getD4());
-
-
-            this.Ka = calcKa();
-            this.Pa = (groundWeight.get() * getKa() * Math.pow(this.height.getHTotal(), 2)) / 2;
-        } catch (Exception ignored) {
-        }
-
-    }
-
-    //TODO Complete function & new Formula
+     //TODO Complete function & new Formula
     public double calcKa() {
         double a, b, c, d;
         beta = 180 - Math.toDegrees(Math.atan((this.height.getHTotal() - this.height.getD3()) / (this.weight.getD5() + this.weight.getD4())));
-        System.out.println("\n\nbeta=" + beta + "\tfi= " + getInnerFrictionAngle() + "\t\n");
-        a = (WallUtils.cosec(Math.toRadians(beta)) * Math.sin(Math.toRadians(beta - getInnerFrictionAngle())));
-        b = Math.sin(Math.toRadians(beta + getGroundFrictionAngle()));
-        c = Math.sin(Math.toRadians(getInnerFrictionAngle() + getGroundFrictionAngle())) * Math.sin(Math.toRadians(getInnerFrictionAngle() - getGroundAngle()));
-        d = Math.sin(Math.toRadians(beta - getGroundAngle()));
-        System.out.printf("a = (cosec(toRadians(%.2f)) * sin(toRadians(%.2f - %.2f)))\n", beta, beta, getInnerFrictionAngle());
-        System.out.printf("b = sin(toRadians(%.2f + %.2f))\n", beta, getInnerFrictionAngle());
-        System.out.printf("c = sin(toRadians(%.2f +%.2f)) * sin(toRadians(%.2f - %.2f))\n", getInnerFrictionAngle(), getGroundFrictionAngle(), getInnerFrictionAngle(), getGroundFrictionAngle());
-        System.out.printf("d = sin(toRadians(%.2f - %.2f))\n\n", beta, getGroundFrictionAngle());
-
-        System.out.printf("a / (b + Math.sqrt(c / d)\n");
-        System.out.printf("%.2f / (%.2f + Math.sqrt(%.2f / %.2f)\n", a, b, c, d);
+        a = (WallUtils.cosec(Math.toRadians(beta)) * Math.sin(Math.toRadians(beta - getFi())));
+        b = Math.sin(Math.toRadians(beta + getLanbda()));
+        c = Math.sin(Math.toRadians(getFi() + getLanbda())) * Math.sin(Math.toRadians(getFi() - getI()));
+        d = Math.sin(Math.toRadians(beta - getI()));
+        testPrintKa(a, c, d, b);
         return a / (b + Math.sqrt(c / d));
+    }
+
+    private void testPrintKa(double a, double c, double d, double b) {
+        System.out.println("\n\nbeta=" + beta + "\tfi= " + getFi() + "\t\n");
+        System.out.printf("a = (cosec(toRadians(%.2f)) * sin(toRadians(%.2f - %.2f)))\n", beta, beta, getFi());
+        System.out.printf("b = sin(toRadians(%.2f + %.2f))\n", beta, getFi());
+        System.out.printf("c = sin(toRadians(%.2f +%.2f)) * sin(toRadians(%.2f - %.2f))\n", getFi(), getLanbda(), getFi(), getLanbda());
+        System.out.printf("d = sin(toRadians(%.2f - %.2f))\n\n", beta, getLanbda());
+
+        System.out.println("a / (b + Math.sqrt(c / d)\n");
+        System.out.printf("%.2f / (%.2f + Math.sqrt(%.2f / %.2f)\n", a, b, c, d);
     }
 
     private double getFaceSlopePercent() {
         return this.getFaceSlope() / 100;
     }
 
-    public double getInnerFrictionAngle() {
-        return innerFrictionAngle.get();
+    public double getFi() {
+        return fi.get();
     }
 
-    public void setInnerFrictionAngle(float innerFrictionAngle) {
-        this.innerFrictionAngle.set(innerFrictionAngle);
+    public void setFi(float fi) {
+        this.fi.set(fi);
     }
 
-    public double getGroundFrictionAngle() {
-        return groundFrictionAngle.get();
+    public double getLanbda() {
+        return lanbda.get();
     }
 
-    public void setGroundFrictionAngle(float groundFrictionAngle) {
-        this.groundFrictionAngle.set(groundFrictionAngle);
+    public void setLanbda(float lanbda) {
+        this.lanbda.set(lanbda);
     }
 
-    public double getGroundAngle() {
-        return groundAngle.get();
+    public double getI() {
+        return i.get();
     }
 
-    public void setGroundAngle(float groundAngle) {
-        this.groundAngle.set(groundAngle);
+    public void setI(float i) {
+        this.i.set(i);
     }
 
-    public double getFrictionCoeff() {
-        return frictionCoeff.get();
+    public double getMiu() {
+        return miu.get();
     }
 
-    public void setFrictionCoeff(float frictionCoeff) {
-        this.frictionCoeff.set(frictionCoeff);
+    public void setMiu(float miu) {
+        this.miu.set(miu);
     }
 
-    public double getCohessia() {
-        return Cohessia.get();
+    public double getCo() {
+        return Co.get();
     }
 
-    public void setCohessia(double cohessia) {
-        Cohessia.set(cohessia);
+    public void setCo(double co) {
+        Co.set(co);
     }
 
-    public double getSpatialWeight() {
-        return spatialWeight.get();
+    public double getQ() {
+        return q.get();
     }
 
-    public void setSpatialWeight(float spatialWeight) {
-        this.spatialWeight.set(spatialWeight);
+    public void setQ(float q) {
+        this.q.set(q);
     }
 
-    public double getWallWeight() {
-        return wallWeight.get();
+    public double getGw() {
+        return Gw.get();
     }
 
-    public void setWallWeight(float wallWeight) {
-        this.wallWeight.set(wallWeight);
+    public void setGw(float gw) {
+        this.Gw.set(gw);
     }
 
     public void increaseW(double v) {
@@ -299,7 +302,19 @@ public class Wall {
         while (fss < minFss || fst < minFst) increaseW(incVal);
     }
 
-    public void getFst() {
+    /**
+     * calculate all relevant information about the current wall
+     */
+    public final void calc() {
+        try {
+            this.height.update(this.getFaceSlopePercent());
+            this.weight.update();
+            this.velocity.update();
+            System.out.println("VTotal = " + velocity.getVTotal());
+            this.Ka = calcKa();
+            this.Pa = (gamma.get() * getKa() * Math.pow(this.height.getHTotal(), 2)) / 2;
+        } catch (Exception ignored) {
+        }
 
     }
 }
