@@ -114,7 +114,7 @@ public class WallController {
     }
 
     private void update() {
-        model.calc();
+        model.calcWall();
         txtPa.setText(String.format("%.2f", model.getPa()));
         txtPh.setText(String.format("%.2f", model.getPh()));
         txtQh.setText(String.format("%.2f", model.getQh()));
