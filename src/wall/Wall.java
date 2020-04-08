@@ -2,6 +2,7 @@ package wall;
 
 import Dimensions.HeightProperty;
 import Dimensions.WeightProperty;
+import Utils.WallUtils;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
@@ -202,30 +203,36 @@ public class Wall {
         try {
             this.weight.setD2((this.height.getHTotal() - this.height.getD2()) * this.getFaceSlopePercent());
             // this.weight.setD5(this.weight.getD() - this.weight.getD1() - this.weight.getD2() - this.weight.getD3() - this.weight.getD4());
-            beta = 180 - Math.toDegrees(Math.atan((this.height.getHTotal() - this.height.getD3()) / (this.weight.getD5() + this.weight.getD4())));
 
-            double a, b, c, d;
-            a = (cosec(Math.toRadians(beta)) * Math.sin(Math.toRadians(beta - getInnerFrictionAngle())));
-            b = Math.sin(Math.toRadians(beta + getGroundFrictionAngle()));
-            c = Math.sin(Math.toRadians(getInnerFrictionAngle() + getGroundFrictionAngle())) * Math.sin(Math.toRadians(getInnerFrictionAngle() - getGroundAngle()));
-            d = Math.sin(Math.toRadians(beta - getGroundAngle()));
-            this.Ka = a / (b + Math.sqrt(c / d));
+
+            this.Ka = calcKa();
             this.Pa = (groundWeight.get() * getKa() * Math.pow(this.height.getHTotal(), 2)) / 2;
         } catch (Exception ignored) {
         }
 
     }
+
     //TODO Complete function & new Formula
     public double calcKa() {
-        return 0;
+        double a, b, c, d;
+        beta = 180 - Math.toDegrees(Math.atan((this.height.getHTotal() - this.height.getD3()) / (this.weight.getD5() + this.weight.getD4())));
+        System.out.println("\n\nbeta=" + beta + "\tfi= " + getInnerFrictionAngle() + "\t\n");
+        a = (WallUtils.cosec(Math.toRadians(beta)) * Math.sin(Math.toRadians(beta - getInnerFrictionAngle())));
+        b = Math.sin(Math.toRadians(beta + getGroundFrictionAngle()));
+        c = Math.sin(Math.toRadians(getInnerFrictionAngle() + getGroundFrictionAngle())) * Math.sin(Math.toRadians(getInnerFrictionAngle() - getGroundAngle()));
+        d = Math.sin(Math.toRadians(beta - getGroundAngle()));
+        System.out.printf("a = (cosec(toRadians(%.2f)) * sin(toRadians(%.2f - %.2f)))\n", beta, beta, getInnerFrictionAngle());
+        System.out.printf("b = sin(toRadians(%.2f + %.2f))\n", beta, getInnerFrictionAngle());
+        System.out.printf("c = sin(toRadians(%.2f +%.2f)) * sin(toRadians(%.2f - %.2f))\n", getInnerFrictionAngle(), getGroundFrictionAngle(), getInnerFrictionAngle(), getGroundFrictionAngle());
+        System.out.printf("d = sin(toRadians(%.2f - %.2f))\n\n", beta, getGroundFrictionAngle());
+
+        System.out.printf("a / (b + Math.sqrt(c / d)\n");
+        System.out.printf("%.2f / (%.2f + Math.sqrt(%.2f / %.2f)\n", a, b, c, d);
+        return a / (b + Math.sqrt(c / d));
     }
 
     private double getFaceSlopePercent() {
         return this.getFaceSlope() / 100;
-    }
-
-    private double cosec(double v) {
-        return 1 / Math.sin(v);
     }
 
     public double getInnerFrictionAngle() {
@@ -282,5 +289,17 @@ public class Wall {
 
     public void setWallWeight(float wallWeight) {
         this.wallWeight.set(wallWeight);
+    }
+
+    public void increaseW(double v) {
+        this.weight.setD(this.weight.getD() + v);
+    }
+
+    public void iterate(double incVal, double minFss, double minFst, double fss, double fst) {
+        while (fss < minFss || fst < minFst) increaseW(incVal);
+    }
+
+    public void getFst() {
+
     }
 }

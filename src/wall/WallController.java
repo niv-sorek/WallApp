@@ -9,6 +9,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.util.converter.NumberStringConverter;
 
+import static Utils.WallUtils.isNumeric;
+
 public class WallController {
 
     // public Label helloWorld;
@@ -110,14 +112,7 @@ public class WallController {
         }
 
     }
-    public static boolean isNumeric(String str) {
-        try {
-            Double.parseDouble(str);
-            return true;
-        } catch(NumberFormatException e){
-            return false;
-        }
-    }
+
     private void update() {
         model.calc();
         txtPa.setText(String.format("%.2f", model.getPa()));
