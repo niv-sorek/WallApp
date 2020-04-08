@@ -262,7 +262,7 @@ public class Wall {
     }
 
     double getPv() {
-        return getPa() * Math.sin(this.getLanbda() + this.teta.get());
+        return getPa() * Math.sin(Math.toRadians(getLanbda() + teta.get()));
     }
 
     double getVw() {
@@ -324,10 +324,9 @@ public class Wall {
         return getSmr() / getSMt();
     }
 
-    //TODO complete function
-    // - understand A.S, F ...
+    // // TODO: 09/04/2020 coplete func with sin cos
     double getFss() {
-        return 0;
+        return getSv() * getMiu() / getSMt();
     }
 
     //TODO Complete function & new Formula
@@ -356,10 +355,14 @@ public class Wall {
 
     public void increaseW(double v) {
         this.weight.setD(this.weight.getD() + v);
+        this.weight.update(height, this.getFaceSlopePercent());
+        //this.height.update();
+        this.velocity.update();
     }
 
-    public void iterate(double incVal, double minFss, double minFst, double fss, double fst) {
-        while (fss < minFss || fst < minFst) increaseW(incVal);
+    public void iterate(double incVal, double minFss, double minFst) {
+        while ((getFss() < minFss || getFst() < minFst) && weight.getD() < 5)
+            increaseW(incVal);
     }
 
     /**
@@ -367,8 +370,8 @@ public class Wall {
      */
     public final void calcWall() {
         try {
-            this.height.update(this.getFaceSlopePercent());
-            this.weight.update();
+            //this.height.update();
+            this.weight.update(height, this.getFaceSlopePercent());
             this.velocity.update();
             System.out.println("VTotal = " + velocity.getVTotal());
             this.Ka = calcKa();
@@ -376,5 +379,9 @@ public class Wall {
         } catch (Exception ignored) {
         }
 
+    }
+
+    public void iterate() {
+        this.iterate(0.5, 1.5, 3);
     }
 }

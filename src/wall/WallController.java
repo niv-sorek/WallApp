@@ -2,6 +2,7 @@ package wall;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -70,6 +71,7 @@ public class WallController {
     public Text txtKa;
     public Label txtPh;
     public TextField txtTeta;
+    public Button btnIterate;
     private Wall model;
 
     public WallController() {
@@ -110,6 +112,10 @@ public class WallController {
                         update();
                 });
         }
+        btnIterate.setOnAction(event -> {
+            model.iterate();
+            update();
+        });
 
     }
 

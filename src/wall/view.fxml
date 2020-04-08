@@ -6,226 +6,202 @@
 <!--    <Label GridPane.rowIndex="1" fx:id="helloWorld"/>-->
 <!--</GridPane>-->
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" minHeight="-Infinity" prefWidth="654.0" style="-fx-font-size: 14"
-            xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="wall.WallController">
+
+<BorderPane minHeight="-Infinity" prefWidth="654.0" style="-fx-font-size: 14" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wall.WallController">
     <stylesheets>/wall/styles.css</stylesheets>
     <right>
         <GridPane fx:id="dataGrid" alignment="CENTER" hgap="5" nodeOrientation="RIGHT_TO_LEFT" vgap="5">
             <padding>
-                <Insets bottom="10" left="20" right="0" top="10"/>
+                <Insets bottom="10" left="20" right="0" top="10" />
             </padding>
             <columnConstraints>
-                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS"/>
-                <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS"/>
-                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="45.0"/>
-                <ColumnConstraints/>
+                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
+                <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="45.0" />
+                <ColumnConstraints />
             </columnConstraints>
             <children>
-                <Label style="-fx-font-weight: bold" text="משקל מרחבי של הקרקע" GridPane.columnIndex="0"
-                       GridPane.rowIndex="0"/>
-                <Label style="-fx-font-weight: bold" text="זווית חיכוך פנימית" GridPane.columnIndex="0"
-                       GridPane.rowIndex="1"/>
-                <Label style="-fx-font-weight: bold" text="זוית חיכוך קרקע-גב הקיר" GridPane.columnIndex="0"
-                       GridPane.rowIndex="2"/>
-                <Label style="-fx-font-weight: bold" text="שיפוע הקרקע הטבעית" GridPane.columnIndex="0"
-                       GridPane.rowIndex="3"/>
-                <Label style="-fx-font-weight: bold" text="מאמץ מגע מותר מקסימלי" GridPane.columnIndex="0"
-                       GridPane.rowIndex="4"/>
-                <Label style="-fx-font-weight: bold" text="שיפוע בסיס הקיר" GridPane.columnIndex="0"
-                       GridPane.rowIndex="5"/>
-                <Label style="-fx-font-weight: bold" text="מקדם חיכוך בסיס הקיר" GridPane.columnIndex="0"
-                       GridPane.rowIndex="6"/>
-                <Label style="-fx-font-weight: bold" text="קוהזיה" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
-                <Label style="-fx-font-weight: bold" text="עומס מפורס על הקרקע" GridPane.columnIndex="0"
-                       GridPane.rowIndex="8"/>
-                <Label style="-fx-font-weight: bold" text="משקל מרחבי של הקיר" GridPane.columnIndex="0"
-                       GridPane.rowIndex="9"/>
-                <Label style="-fx-font-weight: bold" text="שיפוע חזית הקיר" GridPane.columnIndex="0"
-                       GridPane.rowIndex="10"/>
+                <Label style="-fx-font-weight: bold" text="משקל מרחבי של הקרקע" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label style="-fx-font-weight: bold" text="זווית חיכוך פנימית" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Label style="-fx-font-weight: bold" text="זוית חיכוך קרקע-גב הקיר" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <Label style="-fx-font-weight: bold" text="שיפוע הקרקע הטבעית" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <Label style="-fx-font-weight: bold" text="מאמץ מגע מותר מקסימלי" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                <Label style="-fx-font-weight: bold" text="שיפוע בסיס הקיר" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                <Label style="-fx-font-weight: bold" text="מקדם חיכוך בסיס הקיר" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                <Label style="-fx-font-weight: bold" text="קוהזיה" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+                <Label style="-fx-font-weight: bold" text="עומס מפורס על הקרקע" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+                <Label style="-fx-font-weight: bold" text="משקל מרחבי של הקיר" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+                <Label style="-fx-font-weight: bold" text="שיפוע חזית הקיר" GridPane.columnIndex="0" GridPane.rowIndex="10" />
 
                 <VBox spacing="0" GridPane.ColumnIndex="1" GridPane.rowIndex="0">
                     <TextFlow style="-fx-font-size: 80%; " textAlignment="CENTER">
-                        <Text style="-fx-underline: true" text=" T "/>
+                        <Text style="-fx-underline: true" text=" T " />
                     </TextFlow>
                     <TextFlow style="-fx-font-size: 80%; " textAlignment="CENTER">
-                        <Text style="" text="m"/>
-                        <Text style="-fx-font-size: 50%" text="3" translateY="-5"/>
+                        <Text style="" text="m" />
+                        <Text style="-fx-font-size: 50%" text="3" translateY="-5" />
                     </TextFlow>
                 </VBox>
-                <Label text="°" GridPane.ColumnIndex="1" GridPane.rowIndex="1"/>
-                <Label text="°" GridPane.ColumnIndex="1" GridPane.rowIndex="2"/>
-                <Label text="°" GridPane.ColumnIndex="1" GridPane.rowIndex="3"/>
+                <Label text="°" GridPane.ColumnIndex="1" GridPane.rowIndex="1" />
+                <Label text="°" GridPane.ColumnIndex="1" GridPane.rowIndex="2" />
+                <Label text="°" GridPane.ColumnIndex="1" GridPane.rowIndex="3" />
                 <VBox spacing="0" GridPane.ColumnIndex="1" GridPane.rowIndex="4">
                     <TextFlow style="-fx-font-size: 80%; " textAlignment="CENTER">
-                        <Text style="-fx-underline: true" text=" T "/>
+                        <Text style="-fx-underline: true" text=" T " />
                     </TextFlow>
                     <TextFlow style="-fx-font-size: 80%; " textAlignment="CENTER">
-                        <Text style="" text="m"/>
-                        <Text style="-fx-font-size: 50%" text="2" translateY="-5"/>
+                        <Text style="" text="m" />
+                        <Text style="-fx-font-size: 50%" text="2" translateY="-5" />
                     </TextFlow>
                 </VBox>
-                <Label text="°" GridPane.ColumnIndex="1" GridPane.rowIndex="5"/>
+                <Label text="°" GridPane.ColumnIndex="1" GridPane.rowIndex="5" />
                 <VBox spacing="0" GridPane.ColumnIndex="1" GridPane.rowIndex="9">
                     <TextFlow style="-fx-font-size: 80%; " textAlignment="CENTER">
-                        <Text style="-fx-underline: true" text=" T "/>
+                        <Text style="-fx-underline: true" text=" T " />
                     </TextFlow>
                     <TextFlow style="-fx-font-size: 80%; " textAlignment="CENTER">
-                        <Text style="" text="m"/>
-                        <Text style="-fx-font-size: 50%" text="3" translateY="-5"/>
+                        <Text style="" text="m" />
+                        <Text style="-fx-font-size: 50%" text="3" translateY="-5" />
                     </TextFlow>
                 </VBox>
-                <Label text="\%" GridPane.ColumnIndex="1" GridPane.rowIndex="10"/>
+                <Label text="\%" GridPane.ColumnIndex="1" GridPane.rowIndex="10" />
 
-                <Label text="G =" GridPane.ColumnIndex="3" GridPane.rowIndex="0"/>
-                <Label text="φ =" GridPane.ColumnIndex="3" GridPane.rowIndex="1"/>
-                <Label text="λ =" GridPane.ColumnIndex="3" GridPane.rowIndex="2"/>
-                <Label text="i =" GridPane.ColumnIndex="3" GridPane.rowIndex="3"/>
-                <Label text="η =" GridPane.ColumnIndex="3" GridPane.rowIndex="4"/>
-                <Label text="θ =" GridPane.ColumnIndex="3" GridPane.rowIndex="5"/>
-                <Label text="μ =" GridPane.ColumnIndex="3" GridPane.rowIndex="6"/>
-                <Label text="Co =" GridPane.ColumnIndex="3" GridPane.rowIndex="7"/>
-                <Label text="Q =" GridPane.ColumnIndex="3" GridPane.rowIndex="8"/>
-                <Label text="Gw =" GridPane.ColumnIndex="3" GridPane.rowIndex="9"/>
+                <Label text="G =" GridPane.ColumnIndex="3" GridPane.rowIndex="0" />
+                <Label text="φ =" GridPane.ColumnIndex="3" GridPane.rowIndex="1" />
+                <Label text="λ =" GridPane.ColumnIndex="3" GridPane.rowIndex="2" />
+                <Label text="i =" GridPane.ColumnIndex="3" GridPane.rowIndex="3" />
+                <Label text="η =" GridPane.ColumnIndex="3" GridPane.rowIndex="4" />
+                <Label text="θ =" GridPane.ColumnIndex="3" GridPane.rowIndex="5" />
+                <Label text="μ =" GridPane.ColumnIndex="3" GridPane.rowIndex="6" />
+                <Label text="Co =" GridPane.ColumnIndex="3" GridPane.rowIndex="7" />
+                <Label text="Q =" GridPane.ColumnIndex="3" GridPane.rowIndex="8" />
+                <Label text="Gw =" GridPane.ColumnIndex="3" GridPane.rowIndex="9" />
 
-                <TextField fx:id="txtGroundW" styleClass="text-givens" GridPane.ColumnIndex="2" GridPane.rowIndex="0"
-                           alignment="CENTER"/>
-                <TextField fx:id="txtInnerFrictionAngle" styleClass="text-givens" GridPane.ColumnIndex="2"
-                           GridPane.rowIndex="1" alignment="CENTER"/>
-                <TextField fx:id="txtFrictionAngle" styleClass="text-givens" GridPane.ColumnIndex="2"
-                           GridPane.rowIndex="2" alignment="CENTER"/>
-                <TextField fx:id="txtGroundAngle" alignment="CENTER" styleClass="text-givens" text="0"
-                           GridPane.ColumnIndex="2" GridPane.rowIndex="3"/>
-                <TextField fx:id="txtEffort" styleClass="text-givens" GridPane.ColumnIndex="2" GridPane.rowIndex="4"
-                           alignment="CENTER"/>
-                <TextField fx:id="txtBaseAngle" styleClass="text-givens" GridPane.ColumnIndex="2" GridPane.rowIndex="5"
-                           alignment="CENTER"/>
-                <TextField fx:id="txtFrictionCoeff" styleClass="text-givens" GridPane.ColumnIndex="2"
-                           GridPane.rowIndex="6" alignment="CENTER"/>
-                <TextField fx:id="txtCohessia" styleClass="text-givens" text="0" GridPane.ColumnIndex="2"
-                           GridPane.rowIndex="7" alignment="CENTER"/>
-                <TextField fx:id="txtSpatialWeight" styleClass="text-givens" GridPane.ColumnIndex="2"
-                           GridPane.rowIndex="8" alignment="CENTER"/>
-                <TextField fx:id="txtWallWeight" styleClass="text-givens" GridPane.ColumnIndex="2" GridPane.rowIndex="9"
-                           alignment="CENTER"/>
-                <TextField fx:id="txtFaceSlope" styleClass="text-givens" GridPane.ColumnIndex="2" GridPane.rowIndex="10"
-                           alignment="CENTER"/>
-                <TextField fx:id="txtTeta" styleClass="text-givens" GridPane.ColumnIndex="2" GridPane.rowIndex="11"
-                           alignment="CENTER"/>
+                <TextField fx:id="txtGroundW" alignment="CENTER" styleClass="text-givens" GridPane.ColumnIndex="2" GridPane.rowIndex="0" />
+                <TextField fx:id="txtInnerFrictionAngle" alignment="CENTER" styleClass="text-givens" GridPane.ColumnIndex="2" GridPane.rowIndex="1" />
+                <TextField fx:id="txtFrictionAngle" alignment="CENTER" styleClass="text-givens" GridPane.ColumnIndex="2" GridPane.rowIndex="2" />
+                <TextField fx:id="txtGroundAngle" alignment="CENTER" styleClass="text-givens" text="0" GridPane.ColumnIndex="2" GridPane.rowIndex="3" />
+                <TextField fx:id="txtEffort" alignment="CENTER" styleClass="text-givens" GridPane.ColumnIndex="2" GridPane.rowIndex="4" />
+                <TextField fx:id="txtBaseAngle" alignment="CENTER" styleClass="text-givens" GridPane.ColumnIndex="2" GridPane.rowIndex="5" />
+                <TextField fx:id="txtFrictionCoeff" alignment="CENTER" styleClass="text-givens" GridPane.ColumnIndex="2" GridPane.rowIndex="6" />
+                <TextField fx:id="txtCohessia" alignment="CENTER" styleClass="text-givens" text="0" GridPane.ColumnIndex="2" GridPane.rowIndex="7" />
+                <TextField fx:id="txtSpatialWeight" alignment="CENTER" styleClass="text-givens" GridPane.ColumnIndex="2" GridPane.rowIndex="8" />
+                <TextField fx:id="txtWallWeight" alignment="CENTER" styleClass="text-givens" GridPane.ColumnIndex="2" GridPane.rowIndex="9" />
+                <TextField fx:id="txtFaceSlope" alignment="CENTER" styleClass="text-givens" GridPane.ColumnIndex="2" GridPane.rowIndex="10" />
+                <TextField fx:id="txtTeta" alignment="CENTER" styleClass="text-givens" GridPane.ColumnIndex="2" GridPane.rowIndex="11" />
             </children>
             <rowConstraints>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
             </rowConstraints>
         </GridPane>
     </right>
     <left>
         <VBox spacing="20.0">
-            <HBox alignment="center" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
-                  spacing="15" BorderPane.alignment="CENTER_LEFT">
+            <HBox alignment="center" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="15" BorderPane.alignment="CENTER_LEFT">
                 <padding>
-                    <Insets bottom="5" left="25" right="25" top="25"/>
+                    <Insets bottom="5" left="25" right="25" top="25" />
                 </padding>
                 <GridPane fx:id="gridHeights" hgap="10" vgap="5" HBox.hgrow="SOMETIMES">
                     <columnConstraints>
-                        <ColumnConstraints minWidth="-Infinity"/>
-                        <ColumnConstraints maxWidth="35.0" minWidth="-Infinity" prefWidth="35.0"/>
-                        <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0"/>
+                        <ColumnConstraints minWidth="-Infinity" />
+                        <ColumnConstraints maxWidth="35.0" minWidth="-Infinity" prefWidth="35.0" />
+                        <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
                     </columnConstraints>
                     <children>
-                        <Label minWidth="-Infinity" styleClass="title" text="מידות אנכיות" GridPane.columnSpan="2"
-                               GridPane.halignment="LEFT"/>
-                        <Label text="H  =" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                        <Label text="H1 =" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-                        <Label text="H2 =" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-                        <Label text="H3 =" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-                        <Label text="H4 =" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                        <Label minWidth="-Infinity" styleClass="title" text="מידות אנכיות" GridPane.columnSpan="2" GridPane.halignment="LEFT" />
+                        <Label text="H  =" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <Label text="H1 =" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <Label text="H2 =" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                        <Label text="H3 =" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                        <Label text="H4 =" GridPane.columnIndex="0" GridPane.rowIndex="5" />
 
-                        <TextField fx:id="txtH" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                        <TextField fx:id="txtH1" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                        <TextField fx:id="txtH2" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                        <TextField fx:id="txtH3" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-                        <TextField fx:id="txtH4" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                        <TextField fx:id="txtH" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtH1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtH2" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="txtH3" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="txtH4" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                     </children>
                     <rowConstraints>
-                        <RowConstraints/>
-                        <RowConstraints/>
-                        <RowConstraints/>
-                        <RowConstraints/>
-                        <RowConstraints/>
-                        <RowConstraints/>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
                     </rowConstraints>
                 </GridPane>
                 <GridPane fx:id="gridWidth" hgap="10" minHeight="-Infinity" minWidth="-Infinity" vgap="5">
                     <columnConstraints>
-                        <ColumnConstraints minWidth="-Infinity"/>
-                        <ColumnConstraints maxWidth="35.0" minWidth="-Infinity"/>
-                        <ColumnConstraints/>
+                        <ColumnConstraints minWidth="-Infinity" />
+                        <ColumnConstraints maxWidth="35.0" minWidth="-Infinity" />
+                        <ColumnConstraints />
                     </columnConstraints>
                     <children>
-                        <Label minWidth="-Infinity" styleClass="title" text="מידות אופקיות" GridPane.columnSpan="2"
-                               GridPane.halignment="LEFT"/>
-                        <Label text="W  =" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                        <Label text="W1 =" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-                        <Label text="W2 =" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-                        <Label text="W3 =" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-                        <Label text="W4 =" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                        <Label minWidth="-Infinity" styleClass="title" text="מידות אופקיות" GridPane.columnSpan="2" GridPane.halignment="LEFT" />
+                        <Label text="W  =" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <Label text="W1 =" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <Label text="W2 =" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                        <Label text="W3 =" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                        <Label text="W4 =" GridPane.columnIndex="0" GridPane.rowIndex="5" />
 
-                        <TextField fx:id="txtW" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                        <TextField fx:id="txtW1" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                        <TextField fx:id="txtW2" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0"
-                                   prefWidth="29.0" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                        <TextField fx:id="txtW3" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-                        <TextField fx:id="txtW4" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                        <TextField fx:id="txtW" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtW1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtW2" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="29.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="txtW3" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="txtW4" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                     </children>
                     <rowConstraints>
-                        <RowConstraints/>
-                        <RowConstraints/>
-                        <RowConstraints/>
-                        <RowConstraints/>
-                        <RowConstraints/>
-                        <RowConstraints/>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
                     </rowConstraints>
                 </GridPane>
 
             </HBox>
             <GridPane hgap="5">
                 <padding>
-                    <Insets bottom="25" left="25" right="25" top="5"/>
+                    <Insets bottom="25" left="25" right="25" top="5" />
                 </padding>
                 <Text GridPane.columnIndex="0" GridPane.rowIndex="0">Ka</Text>
                 <Text GridPane.columnIndex="1" GridPane.rowIndex="0">=</Text>
 
-                <Text fx:id="txtKa" GridPane.columnIndex="4" GridPane.rowIndex="0"></Text>
+                <Text fx:id="txtKa" GridPane.columnIndex="4" GridPane.rowIndex="0" />
 
                 <Text GridPane.columnIndex="0" GridPane.rowIndex="1">Pa</Text>
                 <Text GridPane.columnIndex="1" GridPane.rowIndex="1">=</Text>
                 <Text GridPane.columnIndex="2" GridPane.rowIndex="1">G × Ka × H1^2 /2</Text>
                 <Text GridPane.columnIndex="3" GridPane.rowIndex="1">=</Text>
-                <Text fx:id="txtPa" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+                <Text fx:id="txtPa" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                 <Text GridPane.columnIndex="5" GridPane.rowIndex="1">לחץ עפר על הקיר</Text>
                 <columnConstraints>
-                    <ColumnConstraints/>
-                    <ColumnConstraints/>
-                    <ColumnConstraints/>
-                    <ColumnConstraints/>
-                    <ColumnConstraints/>
-                    <ColumnConstraints/>
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                    <ColumnConstraints />
                 </columnConstraints>
                 <rowConstraints>
-                    <RowConstraints/>
-                    <RowConstraints/>
+                    <RowConstraints />
+                    <RowConstraints />
                 </rowConstraints>
             </GridPane>
         </VBox>
@@ -234,178 +210,175 @@
 
         <GridPane alignment="CENTER" hgap="5" vgap="0">
             <padding>
-                <Insets bottom="25" left="25" right="25" top="5"/>
+                <Insets bottom="25" left="25" right="25" top="5" />
             </padding>
             <children>
-                <Label styleClass="title" text="מומנטיים הופכיים" GridPane.columnIndex="7" GridPane.columnSpan="6"
-                       GridPane.halignment="RIGHT" GridPane.rowIndex="0"/>
-                <Label text="Mt1" GridPane.columnIndex="7" GridPane.rowIndex="1"/>
-                <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="1"/>
-                <Label text="Ph × H1 / 3" GridPane.columnIndex="9" GridPane.rowIndex="1"/>
-                <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="1"/>
-                <Label fx:id="txtMt1" GridPane.columnIndex="11" GridPane.rowIndex="1"/>
-                <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="1"/>
+                <Label styleClass="title" text="מומנטיים הופכיים" GridPane.columnIndex="7" GridPane.columnSpan="6" GridPane.halignment="RIGHT" GridPane.rowIndex="0" />
+                <Label text="Mt1" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                <Label text="Ph × H1 / 3" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+                <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="1" />
+                <Label fx:id="txtMt1" GridPane.columnIndex="11" GridPane.rowIndex="1" />
+                <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="1" />
 
-                <Label text="Mt2" GridPane.columnIndex="7" GridPane.rowIndex="2"/>
-                <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="2"/>
-                <Label text="Qh × H1 / 2" GridPane.columnIndex="9" GridPane.rowIndex="2"/>
-                <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="2"/>
-                <Label fx:id="txtMt2" GridPane.columnIndex="11" GridPane.rowIndex="2"/>
-                <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="2"/>
+                <Label text="Mt2" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+                <Label text="Qh × H1 / 2" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+                <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="2" />
+                <Label fx:id="txtMt2" GridPane.columnIndex="11" GridPane.rowIndex="2" />
+                <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="2" />
 
-                <Label text="SMt" GridPane.columnIndex="9" GridPane.rowIndex="3"/>
-                <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="3"/>
-                <Label fx:id="txtSmt" GridPane.columnIndex="11" GridPane.rowIndex="3"/>
-                <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="3"/>
+                <Label text="SMt" GridPane.columnIndex="9" GridPane.rowIndex="3" />
+                <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="3" />
+                <Label fx:id="txtSmt" GridPane.columnIndex="11" GridPane.rowIndex="3" />
+                <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="3" />
 
-                <Text GridPane.rowIndex="4"/>
-                <Label styleClass="title" text="מומנטים מייצבים" GridPane.columnIndex="7" GridPane.columnSpan="6"
-                       GridPane.halignment="RIGHT" GridPane.rowIndex="5"/>
+                <Text GridPane.rowIndex="4" />
+                <Label styleClass="title" text="מומנטים מייצבים" GridPane.columnIndex="7" GridPane.columnSpan="6" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
 
-                <Label text="Mrv" GridPane.columnIndex="7" GridPane.rowIndex="6"/>
-                <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="6"/>
-                <Label text="Pv × (W - (W1/3))" GridPane.columnIndex="9" GridPane.rowIndex="6"/>
-                <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="6"/>
-                <Label text="XXX" GridPane.columnIndex="11" GridPane.rowIndex="6"/>
-                <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="6"/>
+                <Label text="Mrv" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+                <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="6" />
+                <Label text="Pv × (W - (W1/3))" GridPane.columnIndex="9" GridPane.rowIndex="6" />
+                <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="6" />
+                <Label text="XXX" GridPane.columnIndex="11" GridPane.rowIndex="6" />
+                <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="6" />
 
-                <Label text="Mrw" GridPane.columnIndex="7" GridPane.rowIndex="7"/>
-                <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="7"/>
-                <Label text="Vw × Lc" GridPane.columnIndex="9" GridPane.rowIndex="7"/>
-                <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="7"/>
-                <Label text="XXYX" GridPane.columnIndex="11" GridPane.rowIndex="7"/>
-                <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="7"/>
+                <Label text="Mrw" GridPane.columnIndex="7" GridPane.rowIndex="7" />
+                <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="7" />
+                <Label text="Vw × Lc" GridPane.columnIndex="9" GridPane.rowIndex="7" />
+                <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="7" />
+                <Label text="XXYX" GridPane.columnIndex="11" GridPane.rowIndex="7" />
+                <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="7" />
 
-                <Label text="Mrs" GridPane.columnIndex="7" GridPane.rowIndex="8"/>
-                <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="8"/>
-                <Label text="Vs × Lc" GridPane.columnIndex="9" GridPane.rowIndex="8"/>
-                <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="8"/>
-                <Label text="XXYX" GridPane.columnIndex="11" GridPane.rowIndex="8"/>
-                <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="8"/>
+                <Label text="Mrs" GridPane.columnIndex="7" GridPane.rowIndex="8" />
+                <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="8" />
+                <Label text="Vs × Lc" GridPane.columnIndex="9" GridPane.rowIndex="8" />
+                <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="8" />
+                <Label text="XXYX" GridPane.columnIndex="11" GridPane.rowIndex="8" />
+                <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="8" />
 
-                <Label text="Mrq" GridPane.columnIndex="7" GridPane.rowIndex="9"/>
-                <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="9"/>
-                <Label text="Vq × (W - (W1/2))" GridPane.columnIndex="9" GridPane.rowIndex="9"/>
-                <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="9"/>
-                <Label text="XXYX" GridPane.columnIndex="11" GridPane.rowIndex="9"/>
-                <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="9"/>
+                <Label text="Mrq" GridPane.columnIndex="7" GridPane.rowIndex="9" />
+                <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="9" />
+                <Label text="Vq × (W - (W1/2))" GridPane.columnIndex="9" GridPane.rowIndex="9" />
+                <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="9" />
+                <Label text="XXYX" GridPane.columnIndex="11" GridPane.rowIndex="9" />
+                <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="9" />
 
-                <Label text="Mrp" GridPane.columnIndex="7" GridPane.rowIndex="10"/>
-                <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="10"/>
-                <Label text="Pp × ((H1 - H)/3)" GridPane.columnIndex="9" GridPane.rowIndex="10"/>
-                <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="10"/>
-                <Label text="XXYX" GridPane.columnIndex="11" GridPane.rowIndex="10"/>
-                <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="10"/>
+                <Label text="Mrp" GridPane.columnIndex="7" GridPane.rowIndex="10" />
+                <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="10" />
+                <Label text="Pp × ((H1 - H)/3)" GridPane.columnIndex="9" GridPane.rowIndex="10" />
+                <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="10" />
+                <Label text="XXYX" GridPane.columnIndex="11" GridPane.rowIndex="10" />
+                <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="10" />
 
-                <Label text="SMr" GridPane.columnIndex="9" GridPane.rowIndex="11"/>
-                <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="11"/>
-                <Label text="XXYX" GridPane.columnIndex="11" GridPane.rowIndex="11"/>
-                <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="11"/>
+                <Label text="SMr" GridPane.columnIndex="9" GridPane.rowIndex="11" />
+                <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="11" />
+                <Label text="XXYX" GridPane.columnIndex="11" GridPane.rowIndex="11" />
+                <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="11" />
 
-                <Label styleClass="title" text="כוחות הופכיים" GridPane.columnIndex="0" GridPane.columnSpan="6"
-                       GridPane.halignment="RIGHT" GridPane.rowIndex="0"/>
-                <Label text="Ph" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                <Label text="Pa × cos()" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-                <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
-                <Label fx:id="txtPh" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
-                <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="1"/>
+                <Label styleClass="title" text="כוחות הופכיים" GridPane.columnIndex="0" GridPane.columnSpan="6" GridPane.halignment="RIGHT" GridPane.rowIndex="0" />
+                <Label text="Ph" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label text="Pa × cos()" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <Label fx:id="txtPh" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="1" />
 
-                <Label text="Qh" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-                <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                <Label text="Q × H1 × Ka" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-                <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
-                <Label fx:id="txtQh" GridPane.columnIndex="4" GridPane.rowIndex="2"/>
-                <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="2"/>
+                <Label text="Qh" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label text="Q × H1 × Ka" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                <Label fx:id="txtQh" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="2" />
 
-                <Label text="Sh" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
-                <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
-                <Label fx:id="txtSh" GridPane.columnIndex="4" GridPane.rowIndex="3"/>
-                <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="3"/>
-                <Text GridPane.rowIndex="4"/>
-                <Label styleClass="title" text="כוחות מייצבים" GridPane.columnIndex="0" GridPane.columnSpan="6"
-                       GridPane.halignment="RIGHT" GridPane.rowIndex="5"/>
+                <Label text="Sh" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                <Label fx:id="txtSh" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                <Text GridPane.rowIndex="4" />
+                <Label styleClass="title" text="כוחות מייצבים" GridPane.columnIndex="0" GridPane.columnSpan="6" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
 
-                <Label text="Pv" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
-                <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
-                <Label text="Pa × Sin()" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
-                <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="6"/>
-                <Label text="XXX" GridPane.columnIndex="4" GridPane.rowIndex="6"/>
-                <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="6"/>
+                <Label text="Pv" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                <Label text="Pa × Sin()" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                <Label text="XXX" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="6" />
 
-                <Label text="Vw" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
-                <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
-                <Label text="Warea × Gw" GridPane.columnIndex="2" GridPane.rowIndex="7"/>
-                <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="7"/>
-                <Label text="XXYX" GridPane.columnIndex="4" GridPane.rowIndex="7"/>
-                <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="7"/>
+                <Label text="Vw" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+                <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                <Label text="Warea × Gw" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                <Label text="XXYX" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+                <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="7" />
 
-                <Label text="Vs" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
-                <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
-                <Label text="Sarea × G" GridPane.columnIndex="2" GridPane.rowIndex="8"/>
-                <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="8"/>
-                <Label text="XXYX" GridPane.columnIndex="4" GridPane.rowIndex="8"/>
-                <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="8"/>
+                <Label text="Vs" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+                <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                <Label text="Sarea × G" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                <Label text="XXYX" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+                <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="8" />
 
-                <Label text="Vq" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
-                <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="9"/>
-                <Label text="Q × W1" GridPane.columnIndex="2" GridPane.rowIndex="9"/>
-                <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="9"/>
-                <Label text="XXYX" GridPane.columnIndex="4" GridPane.rowIndex="9"/>
-                <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="9"/>
+                <Label text="Vq" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+                <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                <Label text="Q × W1" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+                <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+                <Label text="XXYX" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+                <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="9" />
 
-                <Label text="Pp" GridPane.columnIndex="0" GridPane.rowIndex="10"/>
-                <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="10"/>
+                <Label text="Pp" GridPane.columnIndex="0" GridPane.rowIndex="10" />
+                <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                 <VBox spacing="0" GridPane.columnIndex="2" GridPane.rowIndex="10">
                     <TextFlow style="-fx-font-size: 80%; " textAlignment="CENTER">
-                        <Text text="? × Kp × H1"/>
-                        <Text style="-fx-font-size: 50%" text="2" translateY="-5"/>
+                        <Text text="? × Kp × H1" />
+                        <Text style="-fx-font-size: 50%" text="2" translateY="-5" />
                     </TextFlow>
 
-                    <TextFlow style="-fx-font-size: 80%; -fx-border-style: solid none none none;"
-                              textAlignment="CENTER">
-                        <Text text="2"/>
+                    <TextFlow style="-fx-font-size: 80%; -fx-border-style: solid none none none;" textAlignment="CENTER">
+                        <Text text="2" />
                     </TextFlow>
                 </VBox>
-                <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="10"/>
-                <Label text="XXYX" GridPane.columnIndex="4" GridPane.rowIndex="10"/>
-                <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="10"/>
+                <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+                <Label text="XXYX" GridPane.columnIndex="4" GridPane.rowIndex="10" />
+                <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="10" />
 
-                <Label text="Sv" GridPane.columnIndex="2" GridPane.rowIndex="11"/>
-                <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="11"/>
-                <Label text="XXYX" GridPane.columnIndex="4" GridPane.rowIndex="11"/>
-                <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="11"/>
+                <Label text="Sv" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+                <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+                <Label text="XXYX" GridPane.columnIndex="4" GridPane.rowIndex="11" />
+                <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="11" />
             </children>
             <columnConstraints>
-                <ColumnConstraints/>
-                <ColumnConstraints/>
-                <ColumnConstraints/>
-                <ColumnConstraints/>
-                <ColumnConstraints/>
-                <ColumnConstraints/>
-                <ColumnConstraints prefWidth="100.0"/>
-                <ColumnConstraints/>
-                <ColumnConstraints/>
-                <ColumnConstraints/>
-                <ColumnConstraints/>
-                <ColumnConstraints/>
-                <ColumnConstraints/>
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints prefWidth="100.0" />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
             </rowConstraints>
         </GridPane>
     </bottom>
+   <top>
+        <Button fx:id="btnIterate" text="Iterate" BorderPane.alignment="CENTER" />
+   </top>
 </BorderPane>
-

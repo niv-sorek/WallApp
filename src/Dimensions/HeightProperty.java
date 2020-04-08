@@ -12,11 +12,5 @@ public class HeightProperty extends DimensionProperty {
         return this.getD() + this.getD1();
     }
 
-    /**
-     * calculate the value of W2 = H-(H2*%_Slope)
-     * @param faceSlopePercent שיפוע חזית הקיר באחוזים
-     */
-    public void update(double faceSlopePercent){
-        this.setD2((this.getHTotal() - this.getD2()) * faceSlopePercent);
-    }
+
 }
