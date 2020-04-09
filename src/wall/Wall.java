@@ -3,7 +3,6 @@ package wall;
 import Dimensions.HeightProperty;
 import Dimensions.VelocityProperty;
 import Dimensions.WeightProperty;
-import Utils.WallUtils;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
@@ -14,16 +13,14 @@ public class Wall {
     // Calculated:
 
 
+    final HeightProperty height;
+    final WeightProperty weight;
+    final VelocityProperty velocity;
     /**
      * משקל מרחבי של הקרקע
      * G
      */
     private final DoubleProperty gamma;
-    final HeightProperty height;
-    final WeightProperty weight;
-    final VelocityProperty velocity;
-    double Ka = 0.75;
-    double Pa = 0;
     /**
      * זוית חיכוך פנימית
      * fi
@@ -69,7 +66,6 @@ public class Wall {
      */
     private final DoubleProperty Gw;
     private final DoubleProperty faceSlope;
-
     private double beta;
 
     // Constructors:
@@ -166,7 +162,7 @@ public class Wall {
     }
 
     public double getPa() {
-        return Pa;
+        return (getGamma() * getKa() * Math.pow(this.height.getHTotal(), 2)) / 2;
     }
 
     private double getFaceSlopePercent() {
@@ -201,7 +197,7 @@ public class Wall {
         return miu.get();
     }
 
-    public void setMiu(float miu) {
+    public void setMiu(double miu) {
         this.miu.set(miu);
     }
 
@@ -217,7 +213,7 @@ public class Wall {
         return q.get();
     }
 
-    public void setQ(float q) {
+    public void setQ(double q) {
         this.q.set(q);
     }
 
@@ -225,26 +221,22 @@ public class Wall {
         return Gw.get();
     }
 
-    public void setGw(float gw) {
+    public void setGw(double gw) {
         this.Gw.set(gw);
     }
 
     //--------
     // Calculation Functions
     public double getPh() {
-        return (this.getPa() * Math.cos(this.getLambda() + this.theta.get()));
+        return (this.getPa() * Math.cos(Math.toRadians(90 + this.getLambda() - getR())));
     }
 
     public double getQh() {
-        return q.get() * height.getHTotal() * Ka;
+        return q.get() * height.getHTotal() * getKa();
     }
 
     double getSh() {
         return getPh() + getQh();
-    }
-
-    public double getKa() {
-        return Ka;
     }
 
     double getMt1() {
@@ -328,26 +320,29 @@ public class Wall {
     }
 
     //TODO Complete function & new Formula
-    public double calcKa() {
+    public double getKa() {
         double a, b, c, d;
-        beta = 180 - Math.toDegrees(Math.atan((this.height.getHTotal() - this.height.getD3()) / (this.weight.getD5() + this.weight.getD4())));
-        a = (WallUtils.cosec(Math.toRadians(beta)) * Math.sin(Math.toRadians(beta - getFi())));
-        b = Math.sin(Math.toRadians(beta + getLambda()));
+        double R = 180-getR();
+        System.out.println("R= " + R);
+
+        a = sin2(Math.toRadians(R + getFi()));
+        b = sin2(Math.toRadians(R)) * sin2(Math.toRadians(R - getLambda()));
         c = Math.sin(Math.toRadians(getFi() + getLambda())) * Math.sin(Math.toRadians(getFi() - getI()));
-        d = Math.sin(Math.toRadians(beta - getI()));
-        testPrintKa(a, c, d, b);
-        return a / (b + Math.sqrt(c / d));
+        d = Math.sin(Math.toRadians(R - getLambda())) * Math.sin(Math.toRadians(R + getI()));
+        return a / (b * Math.pow((1 + Math.sqrt(c / d)), 2));
     }
 
-    private void testPrintKa(double a, double c, double d, double b) {
-        System.out.println("\n\nbeta=" + beta + "\tfi= " + getFi() + "\t\n");
-        System.out.printf("a = (cosec(toRadians(%.2f)) * sin(toRadians(%.2f - %.2f)))\n", beta, beta, getFi());
-        System.out.printf("b = sin(toRadians(%.2f + %.2f))\n", beta, getFi());
-        System.out.printf("c = sin(toRadians(%.2f +%.2f)) * sin(toRadians(%.2f - %.2f))\n", getFi(), getLambda(), getFi(), getLambda());
-        System.out.printf("d = sin(toRadians(%.2f - %.2f))\n\n", beta, getLambda());
+    private double sin2(double radians) {
+        return Math.pow(Math.sin(radians), 2);
+    }
+   private double cos2(double radians) {
+        return Math.pow(Math.cos(radians), 2);
+    }
 
-        System.out.println("a / (b + Math.sqrt(c / d)\n");
-        System.out.printf("%.2f / (%.2f + Math.sqrt(%.2f / %.2f)\n", a, b, c, d);
+    private double getR() {
+        weight.update(height, getFaceSlopePercent());
+        System.out.printf("atan((%.2f - %.2f) / (%.2f + %.2f))", this.height.getHTotal(), this.height.getD3(), this.weight.getD5(), this.weight.getD4());
+        return Math.toDegrees(Math.atan((this.height.getHTotal() - this.height.getD3()) / (this.weight.getD5() + this.weight.getD4())));
     }
 
 
@@ -372,8 +367,8 @@ public class Wall {
             this.weight.update(height, this.getFaceSlopePercent());
             this.velocity.update();
             System.out.println("VTotal = " + velocity.getVTotal());
-            this.Ka = calcKa();
-            this.Pa = (gamma.get() * getKa() * Math.pow(this.height.getHTotal(), 2)) / 2;
+            System.out.println("Ka = " + getKa());
+
         } catch (Exception ignored) {
         }
 
