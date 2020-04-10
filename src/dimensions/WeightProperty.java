@@ -10,15 +10,17 @@ public class WeightProperty extends DimensionProperty {
     HeightProperty h;
     double slope;
 
-    public WeightProperty(double d1, double d2, double d3, double d4, double d5, double d) {
+    public WeightProperty(double d1, double d2, double d3, double d4, double d5, double d ,HeightProperty h, double slope) {
         super(d1, d2, d3, d4, d);
         this.d5 = new SimpleDoubleProperty(d5);
+        this.update(h, slope);
     }
 
 
     public void update(HeightProperty h, double slope) {
         this.slope = slope;
         this.h = h;
+        this.setD2(this.getD2());
     }
 
 

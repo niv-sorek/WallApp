@@ -2,17 +2,22 @@ package wall;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 
 public class Main extends Application {
+    private static Wall model;
 
+    private static WallGraphics sketch;
 
     public static void main(String[] args) {
-
+        model = new Wall();
+        sketch = new WallGraphics(model);
         launch(args);
+
 
     }
 
@@ -35,13 +40,19 @@ public class Main extends Application {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "view.fxml"));
-        Parent root = loader.load();
+        BorderPane root = loader.load();
         WallController ctrl = loader.getController();
-        ctrl.initialize(new Wall());
+        ctrl.initialize(model);
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 300, 275));
+        StackPane sp = new StackPane();
+        sp.getChildren().add(sketch);
+        root.centerProperty().set(sp);
+        sketch.widthProperty().bind(sp.widthProperty());
+        sketch.heightProperty().bind(sp.heightProperty());
         primaryStage.show();
-
+        ctrl.setSketch(sketch);
+        //etch.setWidth();
     }
 }
 

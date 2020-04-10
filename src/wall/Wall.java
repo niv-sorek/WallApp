@@ -82,7 +82,7 @@ public class Wall {
         this.Gw = new SimpleDoubleProperty(gw);
         this.faceSlope = new SimpleDoubleProperty(4);
         this.height = new HeightProperty(0.8, .4, .4, 0, 1);
-        this.weight = new WeightProperty(.1, 0, 0.2, 0, 0, 1.35);
+        this.weight = new WeightProperty(.1, 0, 0.2, 0, 0, 1.35, height,getFaceSlopePercent());
         this.velocity = new VelocityProperty(this.height, this.weight);
 
     }

@@ -6,8 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.converter.NumberStringConverter;
+
+import java.util.ArrayList;
 
 import static utils.WallUtils.isNumeric;
 
@@ -71,13 +74,19 @@ public class WallController {
     public Label txtPh;
     public TextField txtTheta;
     public Button btnIterate;
+    public VBox DimensionsVBox;
     private Wall model;
+    private WallGraphics sketch;
 
     public WallController() {
     }
 
     public void setModel(Wall model) {
         this.model = model;
+    }
+
+    public void setSketch(WallGraphics sketch) {
+        this.sketch = sketch;
     }
 
     @FXML
@@ -96,18 +105,33 @@ public class WallController {
         txtFaceSlope.textProperty().bindBidirectional(model.faceSlopeProperty(), new NumberStringConverter());
         this.model.height.bind(txtH1, txtH2, txtH3, txtH4, txtH);
         this.model.weight.bind(txtW1, txtW2, txtW3, txtW4, txtW);
+        ArrayList<TextField> tfields = new ArrayList<TextField>();
         for (Node node :
                 dataGrid.getChildren()) {
             if (node instanceof TextField)
-                ((TextField) node).textProperty().addListener((observableValue, s, t1) -> {
-                    if (!t1.matches("\\d{0,4}([.]\\d{0,2})?")) {
-                        ((TextField) node).setText(s);
-                        return;
-                    }
-                    if (isNumeric(t1))
-                        update();
-                });
+                tfields.add((TextField) node);
         }
+        for (Node node :
+                gridHeights.getChildren()) {
+            if (node instanceof TextField)
+                tfields.add((TextField) node);
+        }
+        for (Node node :
+                gridWidth.getChildren()) {
+            if (node instanceof TextField)
+                tfields.add((TextField) node);
+        }
+        for (TextField tf : tfields)
+            tf.textProperty().addListener((observableValue, s, t1) -> {
+                if (t1.length()>0 &&(!t1.matches("\\d{0,4}?([.]\\d{0,3})?") || !isNumeric(t1))) {
+                    tf.setText(s);
+                    return;
+                }
+                else if(t1.length()==0)
+                    return;
+                else
+                    update();
+            });
         btnIterate.setOnAction(event -> {
             model.iterate();
             update();
@@ -117,6 +141,7 @@ public class WallController {
 
     private void update() {
         model.calcWall();
+        sketch.sketch();
         txtPa.setText(String.format("%.2f", model.getPa()));
         txtPh.setText(String.format("%.2f", model.getPh()));
         txtQh.setText(String.format("%.2f", model.getQh()));
