@@ -1,8 +1,8 @@
 package wall;
 
-import Dimensions.HeightProperty;
-import Dimensions.VelocityProperty;
-import Dimensions.WeightProperty;
+import dimensions.HeightProperty;
+import dimensions.VelocityProperty;
+import dimensions.WeightProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
@@ -66,7 +66,6 @@ public class Wall {
      */
     private final DoubleProperty Gw;
     private final DoubleProperty faceSlope;
-    private double beta;
 
     // Constructors:
     public Wall(double gamma, double fi, double lambda, double i, double maxEffort, double theta,
@@ -115,10 +114,6 @@ public class Wall {
 
     public DoubleProperty maxEffortProperty() {
         return maxEffort;
-    }
-
-    public double getTheta() {
-        return theta.get();
     }
 
     public DoubleProperty thetaProperty() {
@@ -240,11 +235,11 @@ public class Wall {
     }
 
     double getMt1() {
-        return getPh() * height.getD1() / 3;
+        return getPh() * height.getHTotal() / 3;
     }
 
     double getMt2() {
-        return getQh() * height.getD1() / 2;
+        return getQh() * height.getHTotal() / 2;
     }
 
     double getSMt() {
@@ -252,11 +247,16 @@ public class Wall {
     }
 
     double getPv() {
-        return getPa() * Math.sin(Math.toRadians(getLambda() + theta.get()));
+        return getPa() * Math.sin(Math.toRadians(90 + this.getLambda() - getR()));
     }
 
     double getVw() {
-        return this.getGamma() * this.velocity.getVTotal();
+//        double a = velocity.getD1() * weight.getD1() * 0.5;
+//        double b = velocity.getD2() * (weight.getD1() + weight.getD2() * 2 / 3);
+//        double c = velocity.getD3() * (weight.getD1() + weight.getD2() + weight.getD3() / 2);
+//        double d = velocity.getD4() * (weight.getD1() + weight.getD2() + weight.getD3() + weight.getD5() / 3);
+//        return a + b + c + d;
+        return velocity.getVTotal()*getGw();
     }
 
     double getVs() {
@@ -280,12 +280,8 @@ public class Wall {
     }
 
     double getCenterOfMass() {
-        double a = velocity.getD1() * weight.getD1() * 0.5;
-        double b = velocity.getD2() * (weight.getD1() + weight.getD2() * 2 / 3);
-        double c = weight.getD3() * (weight.getD1() + weight.getD2() + weight.getD3() / 2);
-        double d = weight.getD4() * (weight.getD1() + weight.getD2() + weight.getD3() + weight.getD5() / 3);
-        double sum = a + b + c + d;
-        return sum / this.velocity.getVTotal();
+
+        return getVw() / this.velocity.getVTotal();
     }
 
     double getMrw() {
@@ -322,11 +318,11 @@ public class Wall {
     //TODO Complete function & new Formula
     public double getKa() {
         double a, b, c, d;
-        double R = 180-getR();
+        double R = 90 - getR();
         System.out.println("R= " + R);
 
-        a = sin2(Math.toRadians(R + getFi()));
-        b = sin2(Math.toRadians(R)) * sin2(Math.toRadians(R - getLambda()));
+        a = sin2(Math.toRadians(R + getFi())) * Math.cos(Math.toRadians(getLambda()));
+        b = Math.sin(Math.toRadians(R)) * Math.sin(Math.toRadians(R - getLambda()));
         c = Math.sin(Math.toRadians(getFi() + getLambda())) * Math.sin(Math.toRadians(getFi() - getI()));
         d = Math.sin(Math.toRadians(R - getLambda())) * Math.sin(Math.toRadians(R + getI()));
         return a / (b * Math.pow((1 + Math.sqrt(c / d)), 2));
@@ -335,7 +331,8 @@ public class Wall {
     private double sin2(double radians) {
         return Math.pow(Math.sin(radians), 2);
     }
-   private double cos2(double radians) {
+
+    private double cos2(double radians) {
         return Math.pow(Math.cos(radians), 2);
     }
 
@@ -350,7 +347,7 @@ public class Wall {
         this.weight.setD(this.weight.getD() + v);
         this.weight.update(height, this.getFaceSlopePercent());
         //this.height.update();
-        this.velocity.update();
+
     }
 
     public void iterate(double incVal, double minFss, double minFst) {
@@ -365,7 +362,7 @@ public class Wall {
         try {
             //this.height.update();
             this.weight.update(height, this.getFaceSlopePercent());
-            this.velocity.update();
+
             System.out.println("VTotal = " + velocity.getVTotal());
             System.out.println("Ka = " + getKa());
 

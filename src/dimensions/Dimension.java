@@ -1,5 +1,6 @@
-package Dimensions;
+package dimensions;
 
+@SuppressWarnings("unused")
 public abstract class Dimension {
     double d1;
     double d2;

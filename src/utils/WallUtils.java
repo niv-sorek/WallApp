@@ -1,6 +1,7 @@
-package Utils;
+package utils;
 
 public class WallUtils {
+    @SuppressWarnings("unused")
     public static double cosec(double v) {
         return 1 / Math.sin(v);
     }

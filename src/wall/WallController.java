@@ -9,7 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.util.converter.NumberStringConverter;
 
-import static Utils.WallUtils.isNumeric;
+import static utils.WallUtils.isNumeric;
 
 public class WallController {
 
@@ -69,7 +69,7 @@ public class WallController {
     public Label txtMt1;
     public Text txtKa;
     public Label txtPh;
-    public TextField txtTeta;
+    public TextField txtTheta;
     public Button btnIterate;
     private Wall model;
 

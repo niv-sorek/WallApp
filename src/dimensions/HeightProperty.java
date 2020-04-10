@@ -1,4 +1,4 @@
-package Dimensions;
+package dimensions;
 
 
 public class HeightProperty extends DimensionProperty {

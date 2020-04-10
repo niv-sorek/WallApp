@@ -1,5 +1,6 @@
-package Dimensions;
+package dimensions;
 
+@SuppressWarnings("unused")
 public class Velocity extends Dimension {
     private double V1, V2, V3, V4;
     private Height height;
@@ -44,16 +45,5 @@ public class Velocity extends Dimension {
     /**
      * @return The Center of gravity of the wall calculated by the Height, Weight, and Velocity
      */
-//    public double getCenterOfWeight() {
-//        double[] vw = new double[4];
-//        vw[0] = V1 * weight.getW1() / 2;
-//        vw[1] = V2 * weight.getW1() + (2 * weight.getW2() / 3);
-//        vw[2] = V3 * (weight.getW1() + weight.getW2() + weight.getW3() / 2);
-//        vw[3] = V4 * (weight.getW1() + weight.getW2() + weight.getW3() + weight.getW5() / 3);
-//        double sum = 0;
-//        for (double i : vw) {
-//            sum += i;
-//        }
-//        return sum;
-//    }
+//
 }

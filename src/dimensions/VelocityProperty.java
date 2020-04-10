@@ -1,30 +1,40 @@
-package Dimensions;
+package dimensions;
 
 
 public class VelocityProperty extends DimensionProperty {
 
-    private HeightProperty h;
-    private WeightProperty w;
-
-    public VelocityProperty(double d1, double d2, double d3, double d4, double d) {
-        super(d1, d2, d3, d4, d);
-    }
+    private final HeightProperty h;
+    private final WeightProperty w;
 
     public VelocityProperty(HeightProperty h, WeightProperty w) {
         super(0, 0, 0, 0, 0);
         this.h = h;
         this.w = w;
-        update();
     }
 
     /**
      * Updates V1, V2, V3, V4
      */
-    public void update() {
-        this.setD1(h.getD3() * w.getD());
-        this.setD2(0.5 * (w.getD2() * (h.getHTotal() - h.getD3())));
-        this.setD3(w.getD3() * (h.getHTotal() - h.getD3()));
-        this.setD4((w.getD4() - (w.getD1() + w.getD2() + w.getD3() + w.getD4())) * (h.getHTotal() - h.getD3()));
+
+
+    @Override
+    public double getD1() {
+        return this.h.getD3() * w.getD();
+    }
+
+    @Override
+    public double getD2() {
+        return 0.5 * (w.getD2() * (h.getHTotal() - h.getD3()));
+    }
+
+    @Override
+    public double getD3() {
+        return w.getD3() * (h.getHTotal() - h.getD3());
+    }
+
+    @Override
+    public double getD4() {
+        return 0.5 * (w.getD5()) * (h.getHTotal() - h.getD3());
     }
 
     public double getVTotal() {
