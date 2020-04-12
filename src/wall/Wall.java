@@ -39,7 +39,7 @@ public class Wall {
     /**
      * מאמץ מגע מותר מקסימלי
      */
-    private final DoubleProperty maxEffort;
+    private final DoubleProperty sigma;
     /**
      * שיםוע בסיס הקיר במעלות
      * alpha
@@ -68,13 +68,13 @@ public class Wall {
     private final DoubleProperty faceSlope;
 
     // Constructors:
-    public Wall(double gamma, double fi, double lambda, double i, double maxEffort, double alpha,
+    public Wall(double gamma, double fi, double lambda, double i, double sigma, double alpha,
                 double miu, double co, double q, double gw) {
         this.gamma = new SimpleDoubleProperty(gamma);
         this.fi = new SimpleDoubleProperty(fi);
         this.lambda = new SimpleDoubleProperty(lambda);
         this.i = new SimpleDoubleProperty(i);
-        this.maxEffort = new SimpleDoubleProperty(maxEffort);
+        this.sigma = new SimpleDoubleProperty(sigma);
         this.alpha = new SimpleDoubleProperty(alpha);
         this.miu = new SimpleDoubleProperty(miu);
         this.Co = new SimpleDoubleProperty(co);
@@ -108,12 +108,12 @@ public class Wall {
         return i;
     }
 
-    public double getMaxEffort() {
-        return maxEffort.get();
+    public double getSigma() {
+        return sigma.get();
     }
 
-    public DoubleProperty maxEffortProperty() {
-        return maxEffort;
+    public DoubleProperty sigmaProperty() {
+        return sigma;
     }
 
     public DoubleProperty alphaProperty() {

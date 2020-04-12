@@ -110,7 +110,7 @@ public class WallController {
         txtInnerFrictionAngle.textProperty().bindBidirectional(model.fiProperty(), new NumberStringConverter());
         txtFrictionAngle.textProperty().bindBidirectional(model.lambdaProperty(), new NumberStringConverter());
         txtGroundAngle.textProperty().bindBidirectional(model.iProperty(), new NumberStringConverter());
-        txtEffort.textProperty().bindBidirectional(model.maxEffortProperty(), new NumberStringConverter());
+        txtEffort.textProperty().bindBidirectional(model.sigmaProperty(), new NumberStringConverter());
         txtBaseAngle.textProperty().bindBidirectional(model.alphaProperty(), new NumberStringConverter());
         txtFrictionCoeff.textProperty().bindBidirectional(model.miuProperty(), new NumberStringConverter());
         txtCohesion.textProperty().bindBidirectional(model.coProperty(), new NumberStringConverter());
