@@ -48,8 +48,7 @@ public class Main extends Application {
         StackPane sp = new StackPane();
         sp.getChildren().add(sketch);
         root.centerProperty().set(sp);
-        sketch.widthProperty().bind(sp.widthProperty());
-        sketch.heightProperty().bind(sp.heightProperty());
+
         primaryStage.show();
         ctrl.setSketch(sketch);
         //etch.setWidth();

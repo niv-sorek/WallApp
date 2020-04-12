@@ -58,4 +58,14 @@ public class VelocityProperty extends DimensionProperty {
     public double getVS1() {
         return 0.5 * w.getD5() * (h.getHTotal() - h.getD3());
     }
+    @Override
+    public void print()
+    {
+        System.out.print("\n\nV:");
+        super.print();
+        System.out.printf("\tVtot= %.2f\n", this.getVTotal());
+        System.out.printf("\tVs1= %.2f\n", this.getVS1());
+        System.out.printf("\tVs2= %.2f\n", this.getVS2());
+
+    }
 }

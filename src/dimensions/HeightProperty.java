@@ -11,6 +11,12 @@ public class HeightProperty extends DimensionProperty {
     public double getHTotal() {
         return this.getD() + this.getD1();
     }
-
+    @Override
+    public void print()
+    {
+        System.out.print("\n\nH:");
+        super.print();
+        System.out.printf("\tHtot= %.2f", this.getHTotal());
+    }
 
 }

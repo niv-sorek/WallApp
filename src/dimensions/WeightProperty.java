@@ -25,10 +25,16 @@ public class WeightProperty extends DimensionProperty {
 
 
     @Override
+    public void setD(double d) {
+        super.setD(d);
+        this.setD5(getD5());
+
+    }
+
+    @Override
     public double getD2() {
         return (this.h.getHTotal() - this.h.getD2()) * this.slope;
     }
-
 
     public double getD5() {
         return this.getD() - this.getD1() - this.getD2() - this.getD3() - this.getD4();
@@ -38,5 +44,11 @@ public class WeightProperty extends DimensionProperty {
     public void setD5(double d5) {
         this.d5.set(d5);
     }
-
+    @Override
+    public void print()
+    {
+        System.out.print("\n\nW:");
+        super.print();
+        System.out.printf("\tg= %.2f\n", this.getD5());
+    }
 }

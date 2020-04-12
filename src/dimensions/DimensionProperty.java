@@ -72,4 +72,11 @@ public abstract class DimensionProperty {
         d.textProperty().bindBidirectional(this.d, new NumberStringConverter());
     }
 
+    public void print() {
+        System.out.printf("\t= %.2f\n", this.getD());
+        System.out.printf("\t1= %.2f\n", this.getD1());
+        System.out.printf("\t2= %.2f\n", this.getD2());
+        System.out.printf("\t3= %.2f\n", this.getD3());
+        System.out.printf("\t4= %.2f\n", this.getD4());
+    }
 }

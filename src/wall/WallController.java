@@ -75,6 +75,20 @@ public class WallController {
     public TextField txtTheta;
     public Button btnIterate;
     public VBox DimensionsVBox;
+    public Label txtMrv;
+    public Label txtMrw;
+    public Label txtMrs;
+    public Label txtMrq;
+    public Label txtMrp;
+    public Label txtSMr;
+    public Label txtPv;
+    public Label txtVw;
+    public Label txtVs;
+    public Label txtPp;
+    public Label txtVq;
+    public Text txtAS;
+    public Text txtFSS;
+    public Text txtFST;
     private Wall model;
     private WallGraphics sketch;
 
@@ -97,7 +111,7 @@ public class WallController {
         txtFrictionAngle.textProperty().bindBidirectional(model.lambdaProperty(), new NumberStringConverter());
         txtGroundAngle.textProperty().bindBidirectional(model.iProperty(), new NumberStringConverter());
         txtEffort.textProperty().bindBidirectional(model.maxEffortProperty(), new NumberStringConverter());
-        txtBaseAngle.textProperty().bindBidirectional(model.thetaProperty(), new NumberStringConverter());
+        txtBaseAngle.textProperty().bindBidirectional(model.alphaProperty(), new NumberStringConverter());
         txtFrictionCoeff.textProperty().bindBidirectional(model.miuProperty(), new NumberStringConverter());
         txtCohesion.textProperty().bindBidirectional(model.coProperty(), new NumberStringConverter());
         txtSpatialWeight.textProperty().bindBidirectional(model.qProperty(), new NumberStringConverter());
@@ -105,6 +119,7 @@ public class WallController {
         txtFaceSlope.textProperty().bindBidirectional(model.faceSlopeProperty(), new NumberStringConverter());
         this.model.height.bind(txtH1, txtH2, txtH3, txtH4, txtH);
         this.model.weight.bind(txtW1, txtW2, txtW3, txtW4, txtW);
+
         ArrayList<TextField> tfields = new ArrayList<TextField>();
         for (Node node :
                 dataGrid.getChildren()) {
@@ -142,6 +157,7 @@ public class WallController {
     private void update() {
         model.calcWall();
         sketch.sketch();
+
         txtPa.setText(String.format("%.2f", model.getPa()));
         txtPh.setText(String.format("%.2f", model.getPh()));
         txtQh.setText(String.format("%.2f", model.getQh()));
@@ -151,6 +167,24 @@ public class WallController {
         txtMt2.setText(String.format("%.2f", model.getMt2()));
         txtSmt.setText(String.format("%.2f", model.getSMt()));
         txtKa.setText(String.format("%.2f", model.getKa()));
+
+        txtMrp.setText(String.format("%.2f", model.getMrp()));
+        txtMrw.setText(String.format("%.2f", model.getMrw()));
+        txtMrs.setText(String.format("%.2f", model.getMrs()));
+        txtMrq.setText(String.format("%.2f", model.getMrq()));
+        txtMrv.setText(String.format("%.2f", model.getMrv()));
+
+        txtPp.setText(String.format("%.2f", model.getPp()));
+        txtVw.setText(String.format("%.2f", model.getVw()));
+        txtVs.setText(String.format("%.2f", model.getVs()));
+        txtVq.setText(String.format("%.2f", model.getVq()));
+        txtPv.setText(String.format("%.2f", model.getPv()));
+
+        txtAS.setText(String.format("%.2f", model.getAS()));
+        txtFSS.setText(String.format("%.2f", model.getFss()));
+        txtFST.setText(String.format("%.2f", model.getFst()));
+
+        //txtMrp.setText(String.format("%.2f", model.getMrp()));
     }
 }
 

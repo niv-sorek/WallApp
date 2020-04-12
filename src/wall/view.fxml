@@ -6,12 +6,13 @@
 <!--    <Label GridPane.rowIndex="1" fx:id="helloWorld"/>-->
 <!--</GridPane>-->
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
-<BorderPane fx:id="MainPane" minHeight="-Infinity" prefWidth="654.0" style="-fx-font-size: 14" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wall.WallController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="MainPane" minHeight="-Infinity" prefWidth="654.0"
+            style="-fx-font-size: 14" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            fx:controller="wall.WallController">
     <stylesheets>/wall/styles.css</stylesheets>
     <right>
         <GridPane fx:id="dataGrid" alignment="CENTER" hgap="5" nodeOrientation="RIGHT_TO_LEFT" vgap="5">
@@ -131,9 +132,10 @@
     </right>
     <left>
         <VBox fx:id="DimensionsVBox" spacing="20.0">
-            <HBox alignment="center" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="15" BorderPane.alignment="CENTER_LEFT">
+            <HBox alignment="center" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
+                  spacing="15" BorderPane.alignment="CENTER_LEFT">
                 <padding>
-                    <Insets bottom="5" left="25" right="25" top="25" />
+                    <Insets bottom="5" left="25" right="25" top="25"/>
                 </padding>
                 <GridPane fx:id="gridHeights" hgap="10" vgap="5" HBox.hgrow="SOMETIMES">
                     <columnConstraints>
@@ -189,37 +191,55 @@
                     <TextField fx:id="txtW1" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                     <TextField fx:id="txtW2" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0"
                                prefWidth="29.0" GridPane.columnIndex="1" GridPane.rowIndex="3" editable="false"/>
-                    <TextField fx:id="txtW3" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                    <TextField fx:id="txtW3" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
                     <TextField fx:id="txtW4" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
                 </GridPane>
 
             </HBox>
             <GridPane hgap="5">
                 <padding>
-                    <Insets bottom="25" left="25" right="25" top="5" />
+                    <Insets bottom="25" left="25" right="25" top="5"/>
                 </padding>
                 <Text GridPane.columnIndex="0" GridPane.rowIndex="0">Ka</Text>
                 <Text GridPane.columnIndex="1" GridPane.rowIndex="0">=</Text>
 
-                <Text fx:id="txtKa" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+                <Text fx:id="txtKa" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
 
                 <Text GridPane.columnIndex="0" GridPane.rowIndex="1">Pa</Text>
                 <Text GridPane.columnIndex="1" GridPane.rowIndex="1">=</Text>
                 <Text GridPane.columnIndex="2" GridPane.rowIndex="1">G × Ka × H1^2 /2</Text>
                 <Text GridPane.columnIndex="3" GridPane.rowIndex="1">=</Text>
-                <Text fx:id="txtPa" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                <Text GridPane.columnIndex="5" GridPane.rowIndex="1">לחץ עפר על הקיר</Text>
+                <Text fx:id="txtPa" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+
+                <Text GridPane.columnIndex="0" GridPane.rowIndex="2">AS</Text>
+                <Text GridPane.columnIndex="1" GridPane.rowIndex="2">=</Text>
+                <Text GridPane.columnIndex="2" GridPane.rowIndex="2"> </Text>
+                <Text GridPane.columnIndex="3" GridPane.rowIndex="2">=</Text>
+                <Text fx:id="txtAS" GridPane.columnIndex="4" GridPane.rowIndex="2"/>
+
+                <Text GridPane.columnIndex="0" GridPane.rowIndex="3">FSS</Text>
+                <Text GridPane.columnIndex="1" GridPane.rowIndex="3">=</Text>
+                <Text GridPane.columnIndex="2" GridPane.rowIndex="3"> </Text>
+                <Text GridPane.columnIndex="3" GridPane.rowIndex="3">=</Text>
+                <Text fx:id="txtFSS" GridPane.columnIndex="4" GridPane.rowIndex="3"/>
+
+                <Text GridPane.columnIndex="0" GridPane.rowIndex="4">FST</Text>
+                <Text GridPane.columnIndex="1" GridPane.rowIndex="4">=</Text>
+                <Text GridPane.columnIndex="2" GridPane.rowIndex="4"> </Text>
+                <Text GridPane.columnIndex="3" GridPane.rowIndex="4">=</Text>
+                <Text fx:id="txtFST" GridPane.columnIndex="4" GridPane.rowIndex="4"/>
+
                 <columnConstraints>
-                    <ColumnConstraints />
-                    <ColumnConstraints />
-                    <ColumnConstraints />
-                    <ColumnConstraints />
-                    <ColumnConstraints />
-                    <ColumnConstraints />
+                    <ColumnConstraints/>
+                    <ColumnConstraints/>
+                    <ColumnConstraints/>
+                    <ColumnConstraints/>
+                    <ColumnConstraints/>
+                    <ColumnConstraints/>
                 </columnConstraints>
                 <rowConstraints>
-                    <RowConstraints />
-                    <RowConstraints />
+                    <RowConstraints/>
+                    <RowConstraints/>
                 </rowConstraints>
             </GridPane>
         </VBox>
@@ -288,40 +308,40 @@
             <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="6"/>
             <Label text="Pv × (W - (W1/3))" GridPane.columnIndex="9" GridPane.rowIndex="6"/>
             <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="6"/>
-            <Label text="XXX" GridPane.columnIndex="11" GridPane.rowIndex="6"/>
+            <Label fx:id="txtMrv" GridPane.columnIndex="11" GridPane.rowIndex="6"/>
             <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="6"/>
 
             <Label text="Mrw" GridPane.columnIndex="7" GridPane.rowIndex="7"/>
             <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="7"/>
             <Label text="Vw × Lc" GridPane.columnIndex="9" GridPane.rowIndex="7"/>
             <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="7"/>
-            <Label text="XXYX" GridPane.columnIndex="11" GridPane.rowIndex="7"/>
+            <Label fx:id="txtMrw" GridPane.columnIndex="11" GridPane.rowIndex="7"/>
             <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="7"/>
 
             <Label text="Mrs" GridPane.columnIndex="7" GridPane.rowIndex="8"/>
             <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="8"/>
             <Label text="Vs × Lc" GridPane.columnIndex="9" GridPane.rowIndex="8"/>
             <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="8"/>
-            <Label text="XXYX" GridPane.columnIndex="11" GridPane.rowIndex="8"/>
+            <Label fx:id="txtMrs" GridPane.columnIndex="11" GridPane.rowIndex="8"/>
             <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="8"/>
 
             <Label text="Mrq" GridPane.columnIndex="7" GridPane.rowIndex="9"/>
             <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="9"/>
             <Label text="Vq × (W - (W1/2))" GridPane.columnIndex="9" GridPane.rowIndex="9"/>
             <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="9"/>
-            <Label text="XXYX" GridPane.columnIndex="11" GridPane.rowIndex="9"/>
+            <Label fx:id="txtMrq" GridPane.columnIndex="11" GridPane.rowIndex="9"/>
             <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="9"/>
 
             <Label text="Mrp" GridPane.columnIndex="7" GridPane.rowIndex="10"/>
             <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="10"/>
             <Label text="Pp × ((H1 - H)/3)" GridPane.columnIndex="9" GridPane.rowIndex="10"/>
             <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="10"/>
-            <Label text="XXYX" GridPane.columnIndex="11" GridPane.rowIndex="10"/>
+            <Label fx:id="txtMrp" GridPane.columnIndex="11" GridPane.rowIndex="10"/>
             <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="10"/>
 
             <Label text="SMr" GridPane.columnIndex="9" GridPane.rowIndex="11"/>
             <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="11"/>
-            <Label text="XXYX" GridPane.columnIndex="11" GridPane.rowIndex="11"/>
+            <Label fx:id="txtSMr" GridPane.columnIndex="11" GridPane.rowIndex="11"/>
             <Label text="tm." GridPane.columnIndex="12" GridPane.rowIndex="11"/>
 
             <Label styleClass="title" text="כוחות הופכיים" GridPane.columnIndex="0" GridPane.columnSpan="6"
@@ -352,28 +372,28 @@
             <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
             <Label text="Pa × Sin()" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
             <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="6"/>
-            <Label text="XXX" GridPane.columnIndex="4" GridPane.rowIndex="6"/>
+            <Label fx:id="txtPv" GridPane.columnIndex="4" GridPane.rowIndex="6"/>
             <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="6"/>
 
             <Label text="Vw" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
             <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
             <Label text="Warea × Gw" GridPane.columnIndex="2" GridPane.rowIndex="7"/>
             <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="7"/>
-            <Label text="XXYX" GridPane.columnIndex="4" GridPane.rowIndex="7"/>
+            <Label fx:id="txtVw" GridPane.columnIndex="4" GridPane.rowIndex="7"/>
             <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="7"/>
 
             <Label text="Vs" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
             <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
             <Label text="Sarea × G" GridPane.columnIndex="2" GridPane.rowIndex="8"/>
             <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="8"/>
-            <Label text="XXYX" GridPane.columnIndex="4" GridPane.rowIndex="8"/>
+            <Label fx:id="txtVs" GridPane.columnIndex="4" GridPane.rowIndex="8"/>
             <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="8"/>
 
             <Label text="Vq" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
             <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="9"/>
             <Label text="Q × W1" GridPane.columnIndex="2" GridPane.rowIndex="9"/>
             <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="9"/>
-            <Label text="XXYX" GridPane.columnIndex="4" GridPane.rowIndex="9"/>
+            <Label fx:id="txtVq" GridPane.columnIndex="4" GridPane.rowIndex="9"/>
             <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="9"/>
 
             <Label text="Pp" GridPane.columnIndex="0" GridPane.rowIndex="10"/>
@@ -389,7 +409,7 @@
                 </TextFlow>
             </VBox>
             <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="10"/>
-            <Label text="XXYX" GridPane.columnIndex="4" GridPane.rowIndex="10"/>
+            <Label fx:id="txtPp" GridPane.columnIndex="4" GridPane.rowIndex="10"/>
             <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="10"/>
 
             <Label text="Sv" GridPane.columnIndex="2" GridPane.rowIndex="11"/>
@@ -398,7 +418,7 @@
             <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="11"/>
         </GridPane>
     </bottom>
-   <top>
-        <Button fx:id="btnIterate" text="Iterate" BorderPane.alignment="CENTER" />
-   </top>
+    <top>
+        <Button fx:id="btnIterate" text="Iterate" BorderPane.alignment="CENTER"/>
+    </top>
 </BorderPane>
