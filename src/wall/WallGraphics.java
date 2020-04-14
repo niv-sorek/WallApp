@@ -1,59 +1,61 @@
 package wall;
 
 
+import javafx.beans.property.DoubleProperty;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
 
-public class WallGraphics extends Pane {
+public class WallGraphics extends Group {
     private static final double MARGIN = 20;
     public Line l;
     Double[] p0;
     Polygon p = new Polygon();
     double scale = 1;
-    Wall wall;
+    DoubleProperty Sc;
+    final Wall wall;
     GraphicsContext content;
-    EventHandler<MouseEvent> eventHandler = e -> {
-        ((Shape) e.getSource()).setStroke(Color.RED);
-    };
+    final EventHandler<MouseEvent> eventHandler = e -> ((Shape) e.getSource()).setStroke(Color.RED);
 
     public WallGraphics(Wall wall) {
         this.wall = wall;
-        this.scale = 150;
 
+        this.minWidth(0);
+        this.minHeight(0);
+    }
+
+    public void setScale(double scale) {
+        this.scale =scale;
     }
 
     public void sketch() {
-        p0 = new Double[]{(this.getWidth() - wall.width.getD() * scale) / 2, this.getHeight() - MARGIN};
+
+        p0 = new Double[]{/*this.size - wall.width.getD() * scale) / 2, this.getHeight() - MARGIN*/0.0, 0.0};
         final double vRuler = p0[0] - 20;
 
         Polygon wallPoly = new Polygon();
         wallPoly.getPoints().addAll(
-                new Double[]{
-                        p0[0], p0[1],
-                        getP1()[0], getP1()[1],
-                        getP2()[0], getP2()[1],
-                        getP3()[0], getP3()[1],
-                        getP4()[0], getP4()[1],
-                        getP5()[0], getP5()[1],
-                        getP6()[0], getP6()[1],
-                        getP7()[0], getP7()[1]
-                });
+                p0[0], p0[1],
+                getP1()[0], getP1()[1],
+                getP2()[0], getP2()[1],
+                getP3()[0], getP3()[1],
+                getP4()[0], getP4()[1],
+                getP5()[0], getP5()[1],
+                getP6()[0], getP6()[1],
+                getP7()[0], getP7()[1]);
         this.getChildren().clear();
         wallPoly.setFill(null);
         wallPoly.setStroke(Color.BLACK);
 
-        wallPoly.setStrokeWidth(3);
+        wallPoly.setStrokeWidth(1);
         wallPoly.setOnMouseEntered(eventHandler);
-        wallPoly.setOnMouseExited(e -> {
-            wallPoly.setStroke(Color.BLACK);
-        });
+        wallPoly.setOnMouseExited(e -> wallPoly.setStroke(Color.BLACK));
         this.getChildren().addAll(wallPoly);
 
     }

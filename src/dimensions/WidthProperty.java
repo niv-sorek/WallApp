@@ -3,7 +3,6 @@ package dimensions;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.control.TextField;
-import javafx.util.converter.NumberStringConverter;
 
 public class WidthProperty extends DimensionProperty {
 
@@ -21,12 +20,9 @@ public class WidthProperty extends DimensionProperty {
     public void update(HeightProperty h, double slope) {
         this.slope = slope;
         this.h = h;
+        this.setD2((this.h.getHTotal() - this.h.getD2()) * this.slope);
     }
 
-    @Override
-    public double getD2() {
-        return (this.h.getHTotal() - this.h.getD2()) * this.slope;
-    }
 
     public double getD5() {
         return this.d5.get();

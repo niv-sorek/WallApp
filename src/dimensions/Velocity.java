@@ -42,8 +42,5 @@ public class Velocity extends Dimension {
     }
 
 
-    /**
-     * @return The Center of gravity of the wall calculated by the Height, Weight, and Velocity
-     */
-//
+    //
 }

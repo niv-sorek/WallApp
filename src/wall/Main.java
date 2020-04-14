@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 
@@ -45,9 +44,13 @@ public class Main extends Application {
         ctrl.initialize(model);
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 300, 275));
-        StackPane sp = new StackPane();
-        sp.getChildren().add(sketch);
-        root.centerProperty().set(sp);
+//        root.heightProperty().addListener((observableValue, number, t1) -> {
+//            sketch.setScale(t1.intValue()-300);
+//        });
+//
+
+        root.centerProperty().set(sketch);
+
 
         primaryStage.show();
         ctrl.setSketch(sketch);

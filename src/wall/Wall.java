@@ -3,7 +3,9 @@ package wall;
 import dimensions.HeightProperty;
 import dimensions.VelocityProperty;
 import dimensions.WidthProperty;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
 public class Wall {
@@ -66,6 +68,7 @@ public class Wall {
      */
     private final DoubleProperty Gw;
     private final DoubleProperty faceSlope;
+    private final BooleanProperty isPP;
 
     // Constructors:
     public Wall(double gamma, double fi, double lambda, double i, double sigma, double alpha,
@@ -84,6 +87,7 @@ public class Wall {
         this.height = new HeightProperty(0.8, .4, .4, 0, 1);
         this.width = new WidthProperty(.1, 0, 0.2, 0, 0.3, height, getFaceSlopePercent());
         this.velocity = new VelocityProperty(this.height, this.width);
+        this.isPP = new SimpleBooleanProperty(false);
     }
 
     public Wall() {
@@ -133,6 +137,10 @@ public class Wall {
 
     public DoubleProperty gwProperty() {
         return Gw;
+    }
+
+    public BooleanProperty isPPProperty() {
+        return isPP;
     }
 
     public double getGamma() {
@@ -324,7 +332,7 @@ public class Wall {
     }
 
     public double getAS() {
-        return this.getFf();
+        return this.getFf() + (isPP.get() ? getPp() : 0);
     }
 
     private double getAlpha() {
@@ -385,7 +393,7 @@ public class Wall {
     }
 
 
-    public void increaseW(double v) throws InterruptedException {
+    public void increaseW(double v) {
         this.width.setD5(this.width.getD5() + v);
         this.width.update(height, this.getFaceSlopePercent());
         //this.height.update();
@@ -410,14 +418,10 @@ public class Wall {
     }
 
     public void iterate() {
-        try {
-            this.iterate(0.05, 1.5, 1.5);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        this.iterate(0.05, 1.5, 1.5);
     }
 
-    public void iterate(double incVal, double minFss, double minFst) throws InterruptedException {
+    public void iterate(double incVal, double minFss, double minFst) {
         int count = 0;
         this.width.setD5(0);
         while ((getFss() < minFss || getFst() < minFst || getEffort() > getSigma()) && count < 1000) {

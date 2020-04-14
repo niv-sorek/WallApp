@@ -3,6 +3,7 @@ package wall;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -91,6 +92,7 @@ public class WallController {
     public Text txtFST;
     public Text txtE;
     public Text txtAngle;
+    public CheckBox isPP;
     private Wall model;
     private WallGraphics sketch;
 
@@ -121,31 +123,30 @@ public class WallController {
         txtFaceSlope.textProperty().bindBidirectional(model.faceSlopeProperty(), new NumberStringConverter());
         this.model.height.bind(txtH1, txtH2, txtH3, txtH4, txtH);
         this.model.width.bind(txtW1, txtW2, txtW3, txtW4, txtW);
-
-        ArrayList<TextField> tfields = new ArrayList<TextField>();
+        isPP.selectedProperty().bindBidirectional(model.isPPProperty());
+        ArrayList<TextField> tFields = new ArrayList<TextField>();
         for (Node node :
                 dataGrid.getChildren()) {
             if (node instanceof TextField)
-                tfields.add((TextField) node);
+                tFields.add((TextField) node);
         }
         for (Node node :
                 gridHeights.getChildren()) {
             if (node instanceof TextField)
-                tfields.add((TextField) node);
+                tFields.add((TextField) node);
         }
         for (Node node :
                 gridWidth.getChildren()) {
             if (node instanceof TextField)
-                tfields.add((TextField) node);
+                tFields.add((TextField) node);
         }
-        for (TextField tf : tfields)
+        isPP.setOnAction(event -> update());
+        for (TextField tf : tFields)
             tf.textProperty().addListener((observableValue, s, t1) -> {
                 if (t1.length() > 0 && (!t1.matches("\\d{0,4}?([.]\\d{0,3})?") || !isNumeric(t1))) {
                     tf.setText(s);
-                    return;
-                } else if (t1.length() == 0)
-                    return;
-                else
+                } else if (t1.length() == 0) {
+                } else
                     update();
             });
         btnIterate.setOnAction(event -> {
@@ -156,6 +157,7 @@ public class WallController {
     }
 
     private void update() {
+        this.sketch.setScale((dataGrid.getHeight()-40)/model.height.getHTotal());
         model.calcWall();
         sketch.sketch();
 
@@ -187,7 +189,6 @@ public class WallController {
         txtE.setText(String.format("%.2f", model.getEffort()));
         txtAngle.setText(String.format("%.2f", model.getTheta()));
 
-        //txtMrp.setText(String.format("%.2f", model.getMrp()));
     }
 }
 
