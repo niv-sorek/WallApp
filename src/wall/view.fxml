@@ -229,6 +229,18 @@
                 <Text GridPane.columnIndex="3" GridPane.rowIndex="4">=</Text>
                 <Text fx:id="txtFST" GridPane.columnIndex="4" GridPane.rowIndex="4"/>
 
+                <Text GridPane.columnIndex="0"                  GridPane.rowIndex="5">e</Text>
+                <Text GridPane.columnIndex="1"                  GridPane.rowIndex="5">=</Text>
+                <Text GridPane.columnIndex="2"                  GridPane.rowIndex="5"> </Text>
+                <Text GridPane.columnIndex="3"                  GridPane.rowIndex="5">=</Text>
+                <Text fx:id="txtE" GridPane.columnIndex="4"   GridPane.rowIndex="5"/>
+
+                <Text GridPane.columnIndex="0" GridPane.rowIndex="6">theta</Text>
+                <Text GridPane.columnIndex="1" GridPane.rowIndex="6">=</Text>
+                <Text GridPane.columnIndex="2" GridPane.rowIndex="6"> </Text>
+                <Text GridPane.columnIndex="3" GridPane.rowIndex="6">=</Text>
+                <Text GridPane.columnIndex="4" GridPane.rowIndex="6" fx:id="txtAngle" />
+
                 <columnConstraints>
                     <ColumnConstraints/>
                     <ColumnConstraints/>

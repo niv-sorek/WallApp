@@ -2,9 +2,12 @@
   <dictionary name="sorek">
     <words>
       <w>coeff</w>
+      <w>cosd</w>
       <w>cosec</w>
       <w>hgap</w>
       <w>sarea</w>
+      <w>sind</w>
+      <w>tand</w>
       <w>vgap</w>
       <w>warea</w>
     </words>

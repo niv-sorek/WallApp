@@ -4,9 +4,9 @@ package dimensions;
 public class VelocityProperty extends DimensionProperty {
 
     private final HeightProperty h;
-    private final WeightProperty w;
+    private final WidthProperty w;
 
-    public VelocityProperty(HeightProperty h, WeightProperty w) {
+    public VelocityProperty(HeightProperty h, WidthProperty w) {
         super(0, 0, 0, 0, 0);
         this.h = h;
         this.w = w;

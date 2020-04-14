@@ -2,7 +2,6 @@ package wall;
 
 
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -31,7 +30,7 @@ public class WallGraphics extends Pane {
     }
 
     public void sketch() {
-        p0 = new Double[]{(this.getWidth() - wall.weight.getD() * scale) / 2, this.getHeight() - MARGIN};
+        p0 = new Double[]{(this.getWidth() - wall.width.getD() * scale) / 2, this.getHeight() - MARGIN};
         final double vRuler = p0[0] - 20;
 
         Polygon wallPoly = new Polygon();
@@ -65,27 +64,27 @@ public class WallGraphics extends Pane {
 
     private Double[] getP2() {
         Double[] prev = getP1();
-        return new Double[]{prev[0] + wall.weight.getD1() * scale, prev[1]};
+        return new Double[]{prev[0] + wall.width.getD1() * scale, prev[1]};
     }
 
     private Double[] getP3() {
         Double[] prev = getP2();
-        return new Double[]{prev[0] + wall.weight.getD2() * scale, prev[1] - (wall.height.getHTotal() - wall.height.getD3()) * scale};
+        return new Double[]{prev[0] + wall.width.getD2() * scale, prev[1] - (wall.height.getHTotal() - wall.height.getD3()) * scale};
     }
 
     private Double[] getP4() {
         Double[] prev = getP3();
-        return new Double[]{prev[0] + wall.weight.getD3() * scale, prev[1]};
+        return new Double[]{prev[0] + wall.width.getD3() * scale, prev[1]};
     }
 
     private Double[] getP5() {
         Double[] prev = getP4();
-        return new Double[]{prev[0] + wall.weight.getD5() * scale, prev[1] + (wall.height.getHTotal() - wall.height.getD3()) * scale};
+        return new Double[]{prev[0] + wall.width.getD5() * scale, prev[1] + (wall.height.getHTotal() - wall.height.getD3()) * scale};
     }
 
     private Double[] getP6() {
         Double[] prev = getP5();
-        return new Double[]{prev[0] + wall.weight.getD4() * scale, prev[1]};
+        return new Double[]{prev[0] + wall.width.getD4() * scale, prev[1]};
     }
 
     private Double[] getP7() {

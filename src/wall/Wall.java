@@ -2,7 +2,7 @@ package wall;
 
 import dimensions.HeightProperty;
 import dimensions.VelocityProperty;
-import dimensions.WeightProperty;
+import dimensions.WidthProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
@@ -14,7 +14,7 @@ public class Wall {
 
 
     final HeightProperty height;
-    final WeightProperty weight;
+    final WidthProperty width;
     final VelocityProperty velocity;
     /**
      * משקל מרחבי של הקרקע
@@ -82,9 +82,8 @@ public class Wall {
         this.Gw = new SimpleDoubleProperty(gw);
         this.faceSlope = new SimpleDoubleProperty(4);
         this.height = new HeightProperty(0.8, .4, .4, 0, 1);
-        this.weight = new WeightProperty(.1, 0, 0.2, 0, 0, 1.35, height, getFaceSlopePercent());
-        this.velocity = new VelocityProperty(this.height, this.weight);
-
+        this.width = new WidthProperty(.1, 0, 0.2, 0, 0.3, height, getFaceSlopePercent());
+        this.velocity = new VelocityProperty(this.height, this.width);
     }
 
     public Wall() {
@@ -223,7 +222,7 @@ public class Wall {
     //--------
     // Calculation Functions
     public double getPh() {
-        return (this.getPa() * Math.cos(Math.toRadians(90 + this.getLambda() - getTheta())));
+        return (this.getPa() * cosd(90 + this.getLambda() - getTheta()));
     }
 
     public double getQh() {
@@ -247,7 +246,7 @@ public class Wall {
     }
 
     double getPv() {
-        return getPa() * Math.sin(Math.toRadians(90 + this.getLambda() - getTheta()));
+        return getPa() * sind(90 + this.getLambda() - getTheta());
     }
 
     double getVw() {
@@ -255,16 +254,21 @@ public class Wall {
         return velocity.getVTotal() * getGw();
     }
 
+    double getKp() {
+
+        return 1 / (Math.pow(tand(45 - 0.5 * getFi()), 2));
+    }
+
     double getVs() {
         return (this.velocity.getVS1() + this.velocity.getVS2()) * getGamma();
     }
 
     double getVq() {
-        return getQ() * (this.weight.getD4() + this.weight.getD5());
+        return getQ() * (this.width.getD4() + this.width.getD5());
     }
 
     double getPp() {
-        return getGw() * Math.pow(this.height.getD1(), 2) / (getKa() * 2);
+        return getGamma() * Math.pow(this.height.getD1(), 2) * getKp() / 2;
     }
 
     double getSv() {
@@ -272,16 +276,16 @@ public class Wall {
     }
 
     double getMrv() {
-        return this.getPv() * (weight.getD1() + weight.getD2() + weight.getD3() + 0.5 * (weight.getD4() + weight.getD5()));
+        return this.getPv() * (width.getD() - width.getD4() - width.getD5() / 3);
     }
 
     double getCenterOfMass() {
 
-        double a = velocity.getD1() * weight.getD() * 0.5;
-        double b = velocity.getD2() * (weight.getD1() + weight.getD2() * 2 / 3);
-        double c = velocity.getD3() * (weight.getD1() + weight.getD2() + weight.getD3() / 2);
-        double d = velocity.getD4() * (weight.getD1() + weight.getD2() + weight.getD3() + weight.getD5() / 3);
-        System.out.printf("a= %.2f\tb= %.2f\tc= %.2f\td=%.2f\n CenterOfMass=(a+b+c+d)/%.2f=%.2f\n", a, b, c, d, velocity.getVTotal(), (a + b + c + d) / this.velocity.getVTotal());
+        double a = velocity.getD1() * width.getD() * 0.5;
+        double b = velocity.getD2() * (width.getD1() + width.getD2() * 2 / 3);
+        double c = velocity.getD3() * (width.getD1() + width.getD2() + width.getD3() / 2);
+        double d = velocity.getD4() * (width.getD1() + width.getD2() + width.getD3() + width.getD5() / 3);
+        // System.out.printf("a= %.2f\tb= %.2f\tc= %.2f\td=%.2f\n CenterOfMass=(a+b+c+d)/%.2f=%.2f\n", a, b, c, d, velocity.getVTotal(), (a + b + c + d) / this.velocity.getVTotal());
         return (a + b + c + d) / this.velocity.getVTotal();
     }
 
@@ -290,13 +294,13 @@ public class Wall {
     }
 
     double getMrs() {
-        double a = velocity.getVS1() * (weight.getD1() + weight.getD2() + weight.getD3() + weight.getD5() * 2 / 3);
-        double b = velocity.getVS2() * (weight.getD() - (weight.getD4() + weight.getD5()) / 2);
+        double a = velocity.getVS1() * (width.getD1() + width.getD2() + width.getD3() + width.getD5() * 2 / 3);
+        double b = velocity.getVS2() * (width.getD() - (width.getD4() + width.getD5()) / 2);
         return a + b;
     }
 
     double getMrq() {
-        return getVq() * (weight.getD() - (weight.getD5() + weight.getD4()) / 2);
+        return getVq() * (width.getD() - (width.getD5() + width.getD4()) / 2);
     }
 
     double getMrp() {
@@ -330,26 +334,40 @@ public class Wall {
 
     public double getKa() {
         double a, b, c, d;
-        double theta = getTheta(); //*** I removed the 90-theta
+        double theta = 90 - getTheta(); //*** I removed the 90-theta
 //        System.out.println("theta= " + theta);
 
       /*  a = sin2(Math.toRadians(theta + getFi())) * Math.cos(Math.toRadians(getLambda()));
         b = Math.sin(Math.toRadians(theta)) * Math.sin(Math.toRadians(theta - getLambda()));
         c = Math.sin(Math.toRadians(getFi() + getLambda())) * Math.sin(Math.toRadians(getFi() - getI()));
         d = Math.sin(Math.toRadians(theta - getLambda())) * Math.sin(Math.toRadians(theta + getI()));*/
+/*
         a = sin2d(theta + getFi());
         b = sin2d(theta) * sin2d(theta - getLambda());
         c = sind(getFi() + getLambda()) * sind(getFi() - getI());
         d = sind(theta - getLambda()) * sind(theta + getI());
+*/
+        a = cos2d(getFi() - theta);
+        b = cos2d(theta) * cosd(theta + getLambda());
+        c = sind(getFi() + getLambda()) * sind(getFi() - getI());
+        d = cosd(theta + getLambda()) * cosd(theta - getI());
+
+
         return a / (b * Math.pow((1 + Math.sqrt(c / d)), 2));
+//        return (a / b) * cosd(theta);
     }
 
     private double sind(double deg) {
         return Math.sin(Math.toRadians(deg));
     }
 
+
     private double cosd(double deg) {
         return Math.cos(Math.toRadians(deg));
+    }
+
+    private double tand(double deg) {
+        return Math.tan(Math.toRadians(deg));
     }
 
     private double sin2d(double deg) {
@@ -360,27 +378,22 @@ public class Wall {
         return Math.pow(cosd(deg), 2);
     }
 
-    private double getTheta() {
-        weight.update(height, getFaceSlopePercent());
-        System.out.printf("atan((%.2f - %.2f) / (%.2f ))\n", this.height.getHTotal(), this.height.getD3(), this.weight.getD5());
-        return Math.toDegrees(Math.atan((this.height.getHTotal() - this.height.getD3()) / (this.weight.getD5() + this.weight.getD4())));
+    public double getTheta() {
+        width.update(height, getFaceSlopePercent());
+        // System.out.printf("atan((%.2f - %.2f) / (%.2f ))\n", this.height.getHTotal(), this.height.getD3(), this.width.getD5());
+        return Math.toDegrees(Math.atan((this.height.getHTotal() - this.height.getD3()) / (this.width.getD5() + this.width.getD4())));
     }
 
 
     public void increaseW(double v) throws InterruptedException {
-        this.weight.setD(this.weight.getD() + v);
-        this.weight.update(height, this.getFaceSlopePercent());
+        this.width.setD5(this.width.getD5() + v);
+        this.width.update(height, this.getFaceSlopePercent());
         //this.height.update();
-
 
     }
 
-    public void iterate(double incVal, double minFss, double minFst) throws InterruptedException {
-        while ((getFss() < minFss || getFst() < minFst) && weight.getD() < 5) {
-            increaseW(incVal);
-
-
-        }
+    double getEffort() {
+        return 6 * getFst() * getSMt() / Math.pow(width.getD(), 2);
     }
 
     /**
@@ -389,35 +402,45 @@ public class Wall {
     public final void calcWall() {
         try {
             //this.height.update();
-            this.weight.update(height, this.getFaceSlopePercent());
+            this.width.update(height, this.getFaceSlopePercent());
 
             print();
         } catch (Exception ignored) {
         }
-
     }
 
     public void iterate() {
         try {
-            this.weight.setD(weight.getD1() + weight.getD2() + weight.getD3() + weight.getD4());
             this.iterate(0.05, 1.5, 1.5);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
+    public void iterate(double incVal, double minFss, double minFst) throws InterruptedException {
+        int count = 0;
+        this.width.setD5(0);
+        while ((getFss() < minFss || getFst() < minFst || getEffort() > getSigma()) && count < 1000) {
+            increaseW(incVal);
+            count++;
+
+            System.out.println("iterates: " + count);
+            print();
+        }
+
+    }
+
     public void print() {
         System.out.printf("gamma= %.2f\t fi=%.2f\t lambda=%.2f\n", getGamma(), getFi(), getLambda());
         System.out.printf("i= %.2f\t Q=%.2f\t GW=%.2f", getI(), getQ(), getGw());
         this.height.print();
-        this.weight.print();
+        this.width.print();
         this.velocity.print();
 
         System.out.printf("\n\nKa= %.2f\t Ph=%.2f\t Qh=%.2f\t Pa=%.2f\n", getKa(), getPh(), getQh(), getPa());
         System.out.printf("Mt1= %.2f\t Mt2=%.2f\t Qh=%.2f\t \n", getMt1(), getMt2(), getQh());
         System.out.printf("Pv= %.2f\t Vw=%.2f\t Vs=%.2f\t Vq=%.2f\t Pp=%.2f\n", getPv(), getVw(), getVs(), getVq(), getPp());
         System.out.printf("Mrv= %.2f\t Mrw=%.2f\t Mrs=%.2f\t Mrq=%.2f\t Mrp=%.2f\n", getMrv(), getMrw(), getMrs(), getMrq(), getMrp());
-
-
+        System.out.printf("e=%.2f\t sigma=%.2f\t Fss=%.2f\t minFss=%.2f\t Fst=%.2f\t minFST=%.2f\n", getEffort(), getSigma(), getFss(), 1.5, getFst(), 1.5);
     }
 }

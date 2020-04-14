@@ -89,6 +89,8 @@ public class WallController {
     public Text txtAS;
     public Text txtFSS;
     public Text txtFST;
+    public Text txtE;
+    public Text txtAngle;
     private Wall model;
     private WallGraphics sketch;
 
@@ -118,7 +120,7 @@ public class WallController {
         txtWallWeight.textProperty().bindBidirectional(model.gwProperty(), new NumberStringConverter());
         txtFaceSlope.textProperty().bindBidirectional(model.faceSlopeProperty(), new NumberStringConverter());
         this.model.height.bind(txtH1, txtH2, txtH3, txtH4, txtH);
-        this.model.weight.bind(txtW1, txtW2, txtW3, txtW4, txtW);
+        this.model.width.bind(txtW1, txtW2, txtW3, txtW4, txtW);
 
         ArrayList<TextField> tfields = new ArrayList<TextField>();
         for (Node node :
@@ -138,11 +140,10 @@ public class WallController {
         }
         for (TextField tf : tfields)
             tf.textProperty().addListener((observableValue, s, t1) -> {
-                if (t1.length()>0 &&(!t1.matches("\\d{0,4}?([.]\\d{0,3})?") || !isNumeric(t1))) {
+                if (t1.length() > 0 && (!t1.matches("\\d{0,4}?([.]\\d{0,3})?") || !isNumeric(t1))) {
                     tf.setText(s);
                     return;
-                }
-                else if(t1.length()==0)
+                } else if (t1.length() == 0)
                     return;
                 else
                     update();
@@ -162,7 +163,7 @@ public class WallController {
         txtPh.setText(String.format("%.2f", model.getPh()));
         txtQh.setText(String.format("%.2f", model.getQh()));
         txtSh.setText(String.format("%.2f", model.getSh()));
-
+        txtW.setText(String.format("%.2f", model.width.getD()));
         txtMt1.setText(String.format("%.2f", model.getMt1()));
         txtMt2.setText(String.format("%.2f", model.getMt2()));
         txtSmt.setText(String.format("%.2f", model.getSMt()));
@@ -183,6 +184,8 @@ public class WallController {
         txtAS.setText(String.format("%.2f", model.getAS()));
         txtFSS.setText(String.format("%.2f", model.getFss()));
         txtFST.setText(String.format("%.2f", model.getFst()));
+        txtE.setText(String.format("%.2f", model.getEffort()));
+        txtAngle.setText(String.format("%.2f", model.getTheta()));
 
         //txtMrp.setText(String.format("%.2f", model.getMrp()));
     }
