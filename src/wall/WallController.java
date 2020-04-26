@@ -6,11 +6,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.converter.NumberStringConverter;
 
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.util.ArrayList;
 
 import static utils.WallUtils.isNumeric;
@@ -93,6 +96,7 @@ public class WallController {
     public Text txtE;
     public Text txtAngle;
     public CheckBox isPP;
+    public BorderPane MainPane;
     private Wall model;
     private WallGraphics sketch;
 
@@ -157,7 +161,7 @@ public class WallController {
     }
 
     private void update() {
-        this.sketch.setScale((dataGrid.getHeight()-40)/model.height.getHTotal());
+        this.sketch.setScale((dataGrid.getHeight() - 40) / model.height.getHTotal());
         model.calcWall();
         sketch.sketch();
 
@@ -189,6 +193,17 @@ public class WallController {
         txtE.setText(String.format("%.2f", model.getEffort()));
         txtAngle.setText(String.format("%.2f", model.getTheta()));
 
-    }
-}
+        PrinterJob job = PrinterJob.getPrinterJob();
+        job.setPrintable(model);
+        boolean ok = job.printDialog();
+        if (ok) {
+            try {
+                job.print();
+            } catch (PrinterException ex) {
+                /* The job did not successfully complete */
+            }
+        }
 
+    }
+
+}

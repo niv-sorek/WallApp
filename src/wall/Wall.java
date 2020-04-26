@@ -8,7 +8,15 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
-public class Wall {
+import java.awt.*;
+import java.awt.font.TextAttribute;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Wall implements Printable {
 
 
     // Given:
@@ -18,6 +26,18 @@ public class Wall {
     final HeightProperty height;
     final WidthProperty width;
     final VelocityProperty velocity;
+    final String[][] titles = {
+            {"משקל מרחבי של הקרקע", "t/m^3", "G "},
+            {"זזוית חיכוך פנימית", "", "φ "},
+            {"זוית חיכוך קרקע-גב הקיר", "", "λ "},
+            {"שיפוע הקרקע הטבעית במעלות", "", "i "},
+            {"מאמץ מגע מותר מקסימלי", "", "η "},
+            {"שיפוע בסיס הקיר במעלות", "", "θ "},
+            {"מקדם חיכוך בסיס הקיר-קרקע", "", "μ "},
+            {"קוהזיה", "", "Co"},
+            {"עומס מפורס על הקרקע", "", "Q "},
+            {"משקל מרחבי של הקיר", "", "Gw"}
+    };
     /**
      * משקל מרחבי של הקרקע
      * G
@@ -69,6 +89,7 @@ public class Wall {
     private final DoubleProperty Gw;
     private final DoubleProperty faceSlope;
     private final BooleanProperty isPP;
+    private String Name;
 
     // Constructors:
     public Wall(double gamma, double fi, double lambda, double i, double sigma, double alpha,
@@ -92,6 +113,15 @@ public class Wall {
 
     public Wall() {
         this(2, 30, 20, 0, 35, 0, 0.5, 0, 0.5, 2.4);
+    }
+
+    static void drawStringRTL(Graphics g, String str, int x, int y) {
+        g.drawString(str, x - g.getFontMetrics().stringWidth(str), y);
+    }
+
+    static void drawStringCenterRTL(Graphics g, String str, int width, int y) {
+        int x = width / 2 - g.getFontMetrics().stringWidth(str) / 2;
+        g.drawString(str, x, y);
     }
 
     //Getters And Setters:
@@ -330,6 +360,7 @@ public class Wall {
     double getFf() {
         return getMiu() * (getSv() * cosd(getAlpha()) + getSh() * sind(getAlpha()));
     }
+    //TODO Complete function & new Formula
 
     public double getAS() {
         return this.getFf() + (isPP.get() ? getPp() : 0);
@@ -338,7 +369,6 @@ public class Wall {
     private double getAlpha() {
         return this.alpha.get();
     }
-    //TODO Complete function & new Formula
 
     public double getKa() {
         double a, b, c, d;
@@ -369,7 +399,6 @@ public class Wall {
         return Math.sin(Math.toRadians(deg));
     }
 
-
     private double cosd(double deg) {
         return Math.cos(Math.toRadians(deg));
     }
@@ -392,7 +421,6 @@ public class Wall {
         return Math.toDegrees(Math.atan((this.height.getHTotal() - this.height.getD3()) / (this.width.getD5() + this.width.getD4())));
     }
 
-
     public void increaseW(double v) {
         this.width.setD5(this.width.getD5() + v);
         this.width.update(height, this.getFaceSlopePercent());
@@ -412,7 +440,7 @@ public class Wall {
             //this.height.update();
             this.width.update(height, this.getFaceSlopePercent());
 
-            print();
+            // print();
         } catch (Exception ignored) {
         }
     }
@@ -429,22 +457,71 @@ public class Wall {
             count++;
 
             System.out.println("iterates: " + count);
-            print();
+            // print();
         }
 
     }
 
-    public void print() {
-        System.out.printf("gamma= %.2f\t fi=%.2f\t lambda=%.2f\n", getGamma(), getFi(), getLambda());
-        System.out.printf("i= %.2f\t Q=%.2f\t GW=%.2f", getI(), getQ(), getGw());
-        this.height.print();
-        this.width.print();
-        this.velocity.print();
+    public int print(Graphics g, PageFormat pf, int page)
+            throws PrinterException {
 
-        System.out.printf("\n\nKa= %.2f\t Ph=%.2f\t Qh=%.2f\t Pa=%.2f\n", getKa(), getPh(), getQh(), getPa());
-        System.out.printf("Mt1= %.2f\t Mt2=%.2f\t Qh=%.2f\t \n", getMt1(), getMt2(), getQh());
-        System.out.printf("Pv= %.2f\t Vw=%.2f\t Vs=%.2f\t Vq=%.2f\t Pp=%.2f\n", getPv(), getVw(), getVs(), getVq(), getPp());
-        System.out.printf("Mrv= %.2f\t Mrw=%.2f\t Mrs=%.2f\t Mrq=%.2f\t Mrp=%.2f\n", getMrv(), getMrw(), getMrs(), getMrq(), getMrp());
-        System.out.printf("e=%.2f\t sigma=%.2f\t Fss=%.2f\t minFss=%.2f\t Fst=%.2f\t minFST=%.2f\n", getEffort(), getSigma(), getFss(), 1.5, getFst(), 1.5);
+        // We have only one page, and 'page'
+        // is zero-based
+        if (page > 0) {
+            return NO_SUCH_PAGE;
+        }
+        final int bounds = (int) pf.getImageableWidth() / 12;
+        int right = (int) pf.getImageableWidth() - bounds;
+        int width = (int) pf.getImageableWidth();
+        Map<TextAttribute, Integer> fontAttributesUnderLine = new HashMap<TextAttribute, Integer>();
+        fontAttributesUnderLine.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+        Font underLine = new Font("Narkisim", Font.PLAIN, 12).deriveFont(fontAttributesUnderLine);
+        Map<TextAttribute, Boolean> fontAttributeRegular = new HashMap<TextAttribute, Boolean>();
+        fontAttributeRegular.put(TextAttribute.RUN_DIRECTION, TextAttribute.RUN_DIRECTION_RTL);
+        Font regularFont = new Font("Narkisim", Font.PLAIN, 12).deriveFont(fontAttributeRegular);
+        int line = 5;
+        // User (0,0) is typically outside the
+        // imageable area, so we must translate
+        // by the X and Y values in the PageFormat
+        // to avoid clipping.
+        Graphics2D g2d = (Graphics2D) g;
+
+        g.setFont(regularFont);
+        g2d.translate(pf.getImageableX(), pf.getImageableY());
+
+        drawStringCenterRTL(g, "שם הפרויקט: " + this.Name, width, line++ * g.getFontMetrics().getHeight());
+        drawStringCenterRTL(g, "בדיקת קיר תומך לגובה " + this.height.getHTotal() + " מ'. החישוב לפי קולון", width, line++ * g.getFontMetrics().getHeight());
+
+        g.setFont(underLine);
+        line += 2; // Jump 2 lines
+        line = PrintBasicInfo(g, right, width, regularFont, line);
+
+
+        // Now we perform our rendering
+
+        // tell the caller that this page is part
+        // of the printed document
+        return PAGE_EXISTS;
+    }
+
+    private int PrintBasicInfo(Graphics g, int right, int width, Font regularFont, int line) {
+        drawStringCenterRTL(g, "נתונים כללים:", width, line++ * g.getFontMetrics().getHeight());
+        g.setFont(regularFont);
+
+        int maxWidth = 0;
+        for (String[] s : titles) {
+            if (g.getFontMetrics().stringWidth(s[0]) > maxWidth)
+                maxWidth = g.getFontMetrics().stringWidth(s[0]);
+        }
+        for (String[] s : titles) {
+            drawStringRTL(g, s[0], right, line * g.getFontMetrics().getHeight());                       // title
+            drawStringRTL(g, s[1], right - maxWidth - 20, line * g.getFontMetrics().getHeight());    // Measures
+            drawStringRTL(g, "=", right - maxWidth - 100, line * g.getFontMetrics().getHeight()); // '=' symbol
+            drawStringRTL(g, s[2], right - maxWidth - 130, line * g.getFontMetrics().getHeight());   // Letter
+            line++;
+        }
+        return line;
     }
 }
+
+
