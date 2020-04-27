@@ -10,13 +10,10 @@ import javafx.beans.property.SimpleDoubleProperty;
 
 import java.awt.*;
 import java.awt.font.TextAttribute;
-import java.awt.print.PageFormat;
-import java.awt.print.Printable;
-import java.awt.print.PrinterException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Wall implements Printable {
+public class Wall {
 
 
     // Given:
@@ -26,18 +23,7 @@ public class Wall implements Printable {
     final HeightProperty height;
     final WidthProperty width;
     final VelocityProperty velocity;
-    final String[][] titles = {
-            {"משקל מרחבי של הקרקע", "t/m^3", "G "},
-            {"זזוית חיכוך פנימית", "", "φ "},
-            {"זוית חיכוך קרקע-גב הקיר", "", "λ "},
-            {"שיפוע הקרקע הטבעית במעלות", "", "i "},
-            {"מאמץ מגע מותר מקסימלי", "", "η "},
-            {"שיפוע בסיס הקיר במעלות", "", "θ "},
-            {"מקדם חיכוך בסיס הקיר-קרקע", "", "μ "},
-            {"קוהזיה", "", "Co"},
-            {"עומס מפורס על הקרקע", "", "Q "},
-            {"משקל מרחבי של הקיר", "", "Gw"}
-    };
+
     /**
      * משקל מרחבי של הקרקע
      * G
@@ -352,6 +338,7 @@ public class Wall implements Printable {
     double getFst() {
         return getSmr() / getSMt();
     }
+    //TODO Complete function & new Formula
 
     double getFss() {
         return getAS() / getSh();
@@ -360,7 +347,6 @@ public class Wall implements Printable {
     double getFf() {
         return getMiu() * (getSv() * cosd(getAlpha()) + getSh() * sind(getAlpha()));
     }
-    //TODO Complete function & new Formula
 
     public double getAS() {
         return this.getFf() + (isPP.get() ? getPp() : 0);
@@ -462,66 +448,7 @@ public class Wall implements Printable {
 
     }
 
-    public int print(Graphics g, PageFormat pf, int page)
-            throws PrinterException {
 
-        // We have only one page, and 'page'
-        // is zero-based
-        if (page > 0) {
-            return NO_SUCH_PAGE;
-        }
-        final int bounds = (int) pf.getImageableWidth() / 12;
-        int right = (int) pf.getImageableWidth() - bounds;
-        int width = (int) pf.getImageableWidth();
-        Map<TextAttribute, Integer> fontAttributesUnderLine = new HashMap<TextAttribute, Integer>();
-        fontAttributesUnderLine.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
-        Font underLine = new Font("Narkisim", Font.PLAIN, 12).deriveFont(fontAttributesUnderLine);
-        Map<TextAttribute, Boolean> fontAttributeRegular = new HashMap<TextAttribute, Boolean>();
-        fontAttributeRegular.put(TextAttribute.RUN_DIRECTION, TextAttribute.RUN_DIRECTION_RTL);
-        Font regularFont = new Font("Narkisim", Font.PLAIN, 12).deriveFont(fontAttributeRegular);
-        int line = 5;
-        // User (0,0) is typically outside the
-        // imageable area, so we must translate
-        // by the X and Y values in the PageFormat
-        // to avoid clipping.
-        Graphics2D g2d = (Graphics2D) g;
-
-        g.setFont(regularFont);
-        g2d.translate(pf.getImageableX(), pf.getImageableY());
-
-        drawStringCenterRTL(g, "שם הפרויקט: " + this.Name, width, line++ * g.getFontMetrics().getHeight());
-        drawStringCenterRTL(g, "בדיקת קיר תומך לגובה " + this.height.getHTotal() + " מ'. החישוב לפי קולון", width, line++ * g.getFontMetrics().getHeight());
-
-        g.setFont(underLine);
-        line += 2; // Jump 2 lines
-        line = PrintBasicInfo(g, right, width, regularFont, line);
-
-
-        // Now we perform our rendering
-
-        // tell the caller that this page is part
-        // of the printed document
-        return PAGE_EXISTS;
-    }
-
-    private int PrintBasicInfo(Graphics g, int right, int width, Font regularFont, int line) {
-        drawStringCenterRTL(g, "נתונים כללים:", width, line++ * g.getFontMetrics().getHeight());
-        g.setFont(regularFont);
-
-        int maxWidth = 0;
-        for (String[] s : titles) {
-            if (g.getFontMetrics().stringWidth(s[0]) > maxWidth)
-                maxWidth = g.getFontMetrics().stringWidth(s[0]);
-        }
-        for (String[] s : titles) {
-            drawStringRTL(g, s[0], right, line * g.getFontMetrics().getHeight());                       // title
-            drawStringRTL(g, s[1], right - maxWidth - 20, line * g.getFontMetrics().getHeight());    // Measures
-            drawStringRTL(g, "=", right - maxWidth - 100, line * g.getFontMetrics().getHeight()); // '=' symbol
-            drawStringRTL(g, s[2], right - maxWidth - 130, line * g.getFontMetrics().getHeight());   // Letter
-            line++;
-        }
-        return line;
-    }
 }
 
 

@@ -12,8 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.converter.NumberStringConverter;
 
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static utils.WallUtils.isNumeric;
@@ -103,12 +102,19 @@ public class WallController {
     public WallController() {
     }
 
+    public Wall getModel() {
+        return model;
+    }
+
     public void setModel(Wall model) {
         this.model = model;
     }
 
     public void setSketch(WallGraphics sketch) {
         this.sketch = sketch;
+    }
+    public WallGraphics getSketch( ) {
+        return this.sketch;
     }
 
     @FXML
@@ -193,15 +199,10 @@ public class WallController {
         txtE.setText(String.format("%.2f", model.getEffort()));
         txtAngle.setText(String.format("%.2f", model.getTheta()));
 
-        PrinterJob job = PrinterJob.getPrinterJob();
-        job.setPrintable(model);
-        boolean ok = job.printDialog();
-        if (ok) {
-            try {
-                job.print();
-            } catch (PrinterException ex) {
-                /* The job did not successfully complete */
-            }
+        try {
+            PrintWall.print(PrintWall.createPrintable(this));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
