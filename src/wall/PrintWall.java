@@ -57,7 +57,7 @@ public class PrintWall {
         public static Pane createPrintable(WallController wall) throws IOException {
             Pane h = new Pane();
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(PrintWall.class.getResource("newWindow.fxml"));
+            fxmlLoader.setLocation(PrintWall.class.getResource("printPane.fxml"));
             AnchorPane root = fxmlLoader.load();
             /*
              * if "fx:controller" is not set in fxml

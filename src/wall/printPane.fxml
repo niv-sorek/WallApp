@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane fx:id="mainPane" prefHeight="832.0" prefWidth="617.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="wall.PrintWall">
+    <VBox alignment="TOP_CENTER" layoutX="20.0" layoutY="42.0" maxHeight="1.7976931348623157E308"
+          maxWidth="1.7976931348623157E308" prefHeight="570.0" prefWidth="462.0" AnchorPane.bottomAnchor="20.0"
+          AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+
+        <GridPane alignment="TOP_CENTER" nodeOrientation="RIGHT_TO_LEFT" prefWidth="432.0">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints fillHeight="false" minHeight="10.0"/>
+                <RowConstraints fillHeight="false" minHeight="10.0"/>
+            </rowConstraints>
+            <HBox alignment="CENTER" fillHeight="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="7.0"
+                  prefWidth="461.0" spacing="10.0">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="שם הפרויקט:" underline="true">
+                    <HBox.margin>
+                        <Insets/>
+                    </HBox.margin>
+                    <font>
+                        <Font size="16.0"/>
+                    </font>
+                </Text>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="XXX">
+                    <HBox.margin>
+                        <Insets/>
+                    </HBox.margin>
+                    <font>
+                        <Font size="16.0"/>
+                    </font>
+                </Text>
+            </HBox>
+            <TextFlow nodeOrientation="RIGHT_TO_LEFT" textAlignment="CENTER" GridPane.halignment="CENTER"
+                      GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                <effect>
+                    <Bloom/>
+                </effect>
+                <Text layoutX="565.0" layoutY="10.0" text="בדיקת קיר תומך לגובה  "/>
+                <Text fill="#0e1deb" text="Text"/>
+                <Text text=" מ', חישוב לפי קולון"/>
+            </TextFlow>
+
+        </GridPane>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="נתונים כלליים" translateX="170.0" underline="true">
+            <font>
+                <Font name="System Bold" size="12.0"/>
+            </font>
+        </Text>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+            <GridPane alignment="TOP_CENTER" depthTest="DISABLE" hgap="5.0" nodeOrientation="LEFT_TO_RIGHT">
+                <Text GridPane.columnIndex="0" GridPane.rowIndex="0">Ka</Text>
+                <Text GridPane.columnIndex="1" GridPane.rowIndex="0">=</Text>
+
+                <Text fx:id="txtKa" GridPane.columnIndex="5"/>
+
+                <Text GridPane.columnIndex="0" GridPane.rowIndex="3">Pa</Text>
+                <Text GridPane.columnIndex="1" GridPane.rowIndex="3">=</Text>
+                <Text GridPane.columnIndex="2" GridPane.rowIndex="3">G × Ka × H1^2 /2</Text>
+                <Text GridPane.columnIndex="3" GridPane.rowIndex="3">=</Text>
+                <Text fx:id="txtPa" GridPane.columnIndex="5" GridPane.rowIndex="3"/>
+                <Text fx:id="txtPa" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4"
+                      GridPane.rowIndex="3"/>
+                <Text layoutX="156.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
+                      GridPane.columnIndex="4"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="=" GridPane.columnIndex="3"/>
+                <Text layoutX="156.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="לחץ עפר על הקיר" textAlignment="RIGHT" underline="true" GridPane.columnIndex="3"
+                      GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2"/>
+
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="0.0"/>
+                    <ColumnConstraints minWidth="0.0" percentWidth="0.0" prefWidth="11.0"/>
+                    <ColumnConstraints percentWidth="0.0"/>
+                    <ColumnConstraints percentWidth="0.0"/>
+                    <ColumnConstraints minWidth="10.0" percentWidth="0.0"/>
+                    <ColumnConstraints/>
+                    <ColumnConstraints/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints minHeight="10.0" prefHeight="20.0"/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                </rowConstraints>
+                <opaqueInsets>
+                    <Insets/>
+                </opaqueInsets>
+                <HBox.margin>
+                    <Insets/>
+                </HBox.margin>
+            </GridPane>
+            <GridPane nodeOrientation="RIGHT_TO_LEFT" vgap="10.0">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                </rowConstraints>
+                <HBox.margin>
+                    <Insets/>
+                </HBox.margin>
+                <padding>
+                    <Insets top="5.0"/>
+                </padding>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="=" GridPane.columnIndex="3"
+                      GridPane.rowIndex="2"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="="
+                      GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="="
+                      GridPane.columnIndex="3"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
+                      GridPane.columnIndex="4" GridPane.rowIndex="8"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
+                      GridPane.columnIndex="4" GridPane.rowIndex="7"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
+                      GridPane.columnIndex="4" GridPane.rowIndex="5"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
+                      GridPane.columnIndex="4" GridPane.rowIndex="6"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
+                      GridPane.columnIndex="4" GridPane.rowIndex="4"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
+                      GridPane.columnIndex="4" GridPane.rowIndex="3"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
+                      GridPane.columnIndex="4" GridPane.rowIndex="2"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
+                      GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="G"
+                      GridPane.columnIndex="4"/>
+                <Text layoutX="422.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="זוית חיכוך פנימית" GridPane.rowIndex="1"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="="
+                      GridPane.columnIndex="3" GridPane.rowIndex="8"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="="
+                      GridPane.columnIndex="3" GridPane.rowIndex="7"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="="
+                      GridPane.columnIndex="3" GridPane.rowIndex="6"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="="
+                      GridPane.columnIndex="3" GridPane.rowIndex="5"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="="
+                      GridPane.columnIndex="3" GridPane.rowIndex="4"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="="
+                      GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="זוית חיכוך קרקע-גב הקיר" GridPane.rowIndex="2"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="שיפוע הקרקע הטבעית" GridPane.rowIndex="3"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="מאמץ מגע מותר מקסימלי" GridPane.rowIndex="4"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="מקדם חיכוף בסיס הקיר-קרקע" GridPane.rowIndex="6"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="שיפוע בסיס הקיר במעלות" GridPane.rowIndex="5"/>
+                <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="קוהזיה"
+                      GridPane.rowIndex="7"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="משקל מרחבי של הקרקע">
+                    <GridPane.margin>
+                        <Insets/>
+                    </GridPane.margin>
+                </Text>
+                <Text layoutX="10.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="עומס מפורס על הקרקע" GridPane.rowIndex="8"/>
+                <Text layoutX="10.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="משקל מרחבי של הקיר" GridPane.rowIndex="9"/>
+            </GridPane>
+        </HBox>
+        <Text nodeOrientation="RIGHT_TO_LEFT" strokeType="OUTSIDE" strokeWidth="0.0" text="מידות הקיר:"
+              translateX="170.0" underline="true">
+            <VBox.margin>
+                <Insets top="20.0"/>
+            </VBox.margin>
+            <font>
+                <Font name="System Bold" size="12.0"/>
+            </font>
+        </Text>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <GridPane maxHeight="150.0">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0"/>
+                    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="50.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="157.0" minWidth="10.0"
+                                       prefWidth="157.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.0" minWidth="30.0"/>
+                    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="103.0"
+                                       minWidth="50.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                </rowConstraints>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="H1" GridPane.rowIndex="1"/>
+                <Text layoutX="10.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="H3"
+                      GridPane.rowIndex="3"/>
+                <Text layoutX="10.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="H4"
+                      GridPane.rowIndex="4"/>
+                <Text layoutX="10.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="H2"
+                      GridPane.rowIndex="2"/>
+                <Text layoutX="10.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="H"/>
+                <Text layoutX="10.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="="
+                      GridPane.columnIndex="1"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="=" GridPane.columnIndex="1"
+                      GridPane.rowIndex="1"/>
+                <Text layoutX="81.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="="
+                      GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Text layoutX="10.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="="
+                      GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <Text layoutX="10.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="="
+                      GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2"
+                      GridPane.halignment="RIGHT"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2"
+                      GridPane.halignment="RIGHT" GridPane.rowIndex="2"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2"
+                      GridPane.halignment="RIGHT" GridPane.rowIndex="1"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2"
+                      GridPane.halignment="RIGHT" GridPane.rowIndex="3"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2"
+                      GridPane.halignment="RIGHT" GridPane.rowIndex="4"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="W4" GridPane.columnIndex="4"
+                      GridPane.rowIndex="4"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="W3" GridPane.columnIndex="4"
+                      GridPane.rowIndex="3"/>
+                <Text layoutX="220.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="="
+                      GridPane.columnIndex="5" GridPane.rowIndex="1"/>
+                <Text layoutX="10.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="W1"
+                      GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+                <Text layoutX="10.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="W2"
+                      GridPane.columnIndex="4" GridPane.rowIndex="2"/>
+                <Text layoutX="304.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="W"
+                      GridPane.columnIndex="4"/>
+                <Text layoutX="10.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="="
+                      GridPane.columnIndex="5" GridPane.rowIndex="4"/>
+                <Text layoutX="10.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="="
+                      GridPane.columnIndex="5" GridPane.rowIndex="3"/>
+                <Text layoutX="10.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="="
+                      GridPane.columnIndex="5" GridPane.rowIndex="2"/>
+                <Text layoutX="220.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="="
+                      GridPane.columnIndex="5"/>
+                <Text layoutX="75.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
+                      GridPane.columnIndex="6" GridPane.halignment="RIGHT"/>
+                <Text layoutX="343.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
+                      GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.rowIndex="4"/>
+                <Text layoutX="10.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
+                      GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.rowIndex="3"/>
+                <Text layoutX="10.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
+                      GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.rowIndex="2"/>
+                <Text layoutX="10.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
+                      GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.rowIndex="1"/>
+            </GridPane>
+        </HBox>
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+        </GridPane>
+        <GridPane alignment="CENTER" hgap="5.0">
+            <columnConstraints>
+                <ColumnConstraints maxWidth="77.0" minWidth="23.333340962727874" prefWidth="38.0"/>
+                <ColumnConstraints minWidth="10.0"/>
+                <ColumnConstraints/>
+                <ColumnConstraints minWidth="10.0"/>
+                <ColumnConstraints minWidth="30.0"/>
+                <ColumnConstraints/>
+                <ColumnConstraints prefWidth="50.0"/>
+                <ColumnConstraints/>
+                <ColumnConstraints minWidth="10.0"/>
+                <ColumnConstraints/>
+                <ColumnConstraints percentWidth="0.0"/>
+                <ColumnConstraints minWidth="10.0" percentWidth="0.0" prefWidth="30.0"/>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+            </rowConstraints>
+            <Label styleClass="title" text="מומנטיים הופכיים" textAlignment="RIGHT" underline="true"
+                   GridPane.columnIndex="7" GridPane.columnSpan="6" GridPane.halignment="RIGHT"
+                   GridPane.rowIndex="0"/>
+            <Label text="Mt1" GridPane.columnIndex="7" GridPane.rowIndex="1"/>
+            <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="1"/>
+            <Label text="Ph × H1 / 3" GridPane.columnIndex="9" GridPane.rowIndex="1"/>
+            <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="1"/>
+            <Label fx:id="txtMt1" GridPane.columnIndex="12" GridPane.rowIndex="1"/>
+            <Label text="tm." GridPane.columnIndex="13" GridPane.rowIndex="1"/>
+
+            <Label text="Mt2" GridPane.columnIndex="7" GridPane.rowIndex="2"/>
+            <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="2"/>
+            <Label text="Qh × H1 / 2" GridPane.columnIndex="9" GridPane.rowIndex="2"/>
+            <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="2"/>
+            <Label fx:id="txtMt2" GridPane.columnIndex="12" GridPane.rowIndex="2"/>
+            <Label text="tm." GridPane.columnIndex="13" GridPane.rowIndex="2"/>
+
+            <Label text="SMt" GridPane.columnIndex="9" GridPane.rowIndex="3">
+                <font>
+                    <Font size="13.0"/>
+                </font>
+            </Label>
+            <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="3"/>
+            <Label fx:id="txtSmt" GridPane.columnIndex="12" GridPane.rowIndex="3"/>
+            <Label text="tm." GridPane.columnIndex="13" GridPane.rowIndex="3"/>
+
+            <Text GridPane.rowIndex="4"/>
+            <Label styleClass="title" text="מומנטים מייצבים" textAlignment="RIGHT" underline="true"
+                   GridPane.columnIndex="7" GridPane.columnSpan="6" GridPane.halignment="RIGHT"
+                   GridPane.rowIndex="5"/>
+
+            <Label text="Mrv" GridPane.columnIndex="7" GridPane.rowIndex="6"/>
+            <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="6"/>
+            <Label text="Pv × (W - (W1/3))" GridPane.columnIndex="9" GridPane.rowIndex="6"/>
+            <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="6"/>
+            <Label fx:id="txtMrv" GridPane.columnIndex="12" GridPane.rowIndex="6"/>
+            <Label text="tm." GridPane.columnIndex="13" GridPane.rowIndex="6"/>
+
+            <Label text="Mrw" GridPane.columnIndex="7" GridPane.rowIndex="7"/>
+            <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="7"/>
+            <Label text="Vw × Lc" GridPane.columnIndex="9" GridPane.rowIndex="7"/>
+            <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="7"/>
+            <Label fx:id="txtMrw" GridPane.columnIndex="12" GridPane.rowIndex="7"/>
+            <Label text="tm." GridPane.columnIndex="13" GridPane.rowIndex="7"/>
+
+            <Label text="Mrs" GridPane.columnIndex="7" GridPane.rowIndex="8"/>
+            <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="8"/>
+            <Label text="Vs × Lc" GridPane.columnIndex="9" GridPane.rowIndex="8"/>
+            <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="8"/>
+            <Label fx:id="txtMrs" GridPane.columnIndex="12" GridPane.rowIndex="8"/>
+            <Label text="tm." GridPane.columnIndex="13" GridPane.rowIndex="8"/>
+
+            <Label text="Mrq" GridPane.columnIndex="7" GridPane.rowIndex="9"/>
+            <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="9"/>
+            <Label text="Vq × (W - (W1/2))" GridPane.columnIndex="9" GridPane.rowIndex="9"/>
+            <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="9"/>
+            <Label fx:id="txtMrq" GridPane.columnIndex="12" GridPane.rowIndex="9"/>
+            <Label text="tm." GridPane.columnIndex="13" GridPane.rowIndex="9"/>
+
+            <Label text="Mrp" GridPane.columnIndex="7" GridPane.rowIndex="10"/>
+            <Label text="=" GridPane.columnIndex="8" GridPane.rowIndex="10"/>
+            <Label text="Pp × ((H1 - H)/3)" GridPane.columnIndex="9" GridPane.rowIndex="10"/>
+            <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="10"/>
+            <Label fx:id="txtMrp" GridPane.columnIndex="12" GridPane.rowIndex="10"/>
+            <Label text="tm." GridPane.columnIndex="13" GridPane.rowIndex="10"/>
+
+            <Label text="SMr" GridPane.columnIndex="9" GridPane.rowIndex="11">
+                <font>
+                    <Font size="13.0"/>
+                </font>
+            </Label>
+            <Label text="=" GridPane.columnIndex="10" GridPane.rowIndex="11"/>
+            <Label fx:id="txtSMr" GridPane.columnIndex="12" GridPane.rowIndex="11"/>
+            <Label text="tm." GridPane.columnIndex="13" GridPane.rowIndex="11"/>
+
+            <Label styleClass="title" text="כוחות הופכיים" textAlignment="RIGHT" underline="true"
+                   GridPane.columnSpan="6" GridPane.halignment="RIGHT" GridPane.rowIndex="0"/>
+            <Label text="Ph" GridPane.rowIndex="1"/>
+            <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Label text="Pa × cos()" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+            <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+            <Label fx:id="txtPh" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+            <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="1"/>
+
+            <Label text="Qh" GridPane.rowIndex="2"/>
+            <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <Label text="Q × H1 × Ka" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+            <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+            <Label fx:id="txtQh" GridPane.columnIndex="4" GridPane.rowIndex="2"/>
+            <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="2"/>
+
+            <Label text="Sh" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                <font>
+                    <Font size="13.0"/>
+                </font>
+            </Label>
+            <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+            <Label fx:id="txtSh" GridPane.columnIndex="4" GridPane.rowIndex="3"/>
+            <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="3"/>
+            <Text GridPane.rowIndex="4"/>
+            <Label styleClass="title" text="כוחות מייצבים" textAlignment="RIGHT" underline="true"
+                   GridPane.columnSpan="6" GridPane.halignment="RIGHT" GridPane.rowIndex="5"/>
+
+            <Label text="Pv" GridPane.rowIndex="6"/>
+            <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+            <Label text="Pa × Sin()" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
+            <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="6"/>
+            <Label fx:id="txtPv" GridPane.columnIndex="4" GridPane.rowIndex="6"/>
+            <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="6"/>
+
+            <Label text="Vw" GridPane.rowIndex="7"/>
+            <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+            <Label text="Warea × Gw" GridPane.columnIndex="2" GridPane.rowIndex="7"/>
+            <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="7"/>
+            <Label fx:id="txtVw" GridPane.columnIndex="4" GridPane.rowIndex="7"/>
+            <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="7"/>
+
+            <Label text="Vs" GridPane.rowIndex="8"/>
+            <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+            <Label text="Sarea × G" GridPane.columnIndex="2" GridPane.rowIndex="8"/>
+            <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="8"/>
+            <Label fx:id="txtVs" GridPane.columnIndex="4" GridPane.rowIndex="8"/>
+            <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="8"/>
+
+            <Label text="Vq" GridPane.rowIndex="9"/>
+            <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="9"/>
+            <Label text="Q × W1" GridPane.columnIndex="2" GridPane.rowIndex="9"/>
+            <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="9"/>
+            <Label fx:id="txtVq" GridPane.columnIndex="4" GridPane.rowIndex="9"/>
+            <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="9"/>
+
+            <Label text="Pp" GridPane.rowIndex="10"/>
+            <Label text="=" GridPane.columnIndex="1" GridPane.rowIndex="10"/>
+            <VBox GridPane.columnIndex="2" GridPane.rowIndex="10">
+                <TextFlow style="-fx-font-size: 80%; " textAlignment="CENTER">
+                    <Text text="? × Kp × H1"/>
+                    <Text style="-fx-font-size: 50%" text="2" translateY="-5"/>
+                </TextFlow>
+
+                <TextFlow style="-fx-font-size: 80%; -fx-border-style: solid none none none;"
+                          textAlignment="CENTER">
+                    <Text text="2"/>
+                </TextFlow>
+            </VBox>
+            <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="10"/>
+            <Label fx:id="txtPp" GridPane.columnIndex="4" GridPane.rowIndex="10"/>
+            <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="10"/>
+
+            <Label text="Sv" GridPane.columnIndex="2" GridPane.rowIndex="11">
+                <font>
+                    <Font size="13.0"/>
+                </font>
+            </Label>
+            <Label text="=" GridPane.columnIndex="3" GridPane.rowIndex="11"/>
+            <Label text="YX" GridPane.columnIndex="4" GridPane.rowIndex="11"/>
+            <Label text="t." GridPane.columnIndex="5" GridPane.rowIndex="11"/>
+            <VBox.margin>
+                <Insets/>
+            </VBox.margin>
+        </GridPane>
+    </VBox>
+</AnchorPane>

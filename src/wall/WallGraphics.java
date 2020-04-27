@@ -13,14 +13,9 @@ import javafx.scene.shape.Shape;
 
 
 public class WallGraphics extends Group {
-    private static final double MARGIN = 20;
-    public Line l;
     Double[] p0;
-    Polygon p = new Polygon();
     double scale = 1;
-    DoubleProperty Sc;
     final Wall wall;
-    GraphicsContext content;
     final EventHandler<MouseEvent> eventHandler = e -> ((Shape) e.getSource()).setStroke(Color.RED);
 
     public WallGraphics(Wall wall) {
