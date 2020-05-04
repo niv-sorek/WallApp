@@ -23,20 +23,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(Wall.class.getResource("/wall/view.fxml"));
-//
-//        WallController controller = new WallController();
-//        controller.setModel(model);
-//        loader.setController(controller);
-//        Parent root = loader.load();
-//        primaryStage.setTitle("Hello World");
-//        primaryStage.setScene(new Scene(root, 300, 275));
-//
-//
-//        primaryStage.show();
-
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "view.fxml"));
         BorderPane root = loader.load();
@@ -44,17 +30,10 @@ public class Main extends Application {
         ctrl.initialize(model);
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 300, 275));
-//        root.heightProperty().addListener((observableValue, number, t1) -> {
-//            sketch.setScale(t1.intValue()-300);
-//        });
-//
 
         root.centerProperty().set(sketch);
-
-
         primaryStage.show();
         ctrl.setSketch(sketch);
-        //etch.setWidth();
     }
 }
 

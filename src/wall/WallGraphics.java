@@ -1,13 +1,10 @@
 package wall;
 
 
-import javafx.beans.property.DoubleProperty;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 

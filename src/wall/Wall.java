@@ -9,9 +9,6 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
 import java.awt.*;
-import java.awt.font.TextAttribute;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Wall {
 

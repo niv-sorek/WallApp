@@ -1,15 +1,19 @@
 package wall;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
 
 import java.io.IOException;
@@ -110,11 +114,12 @@ public class WallController {
         this.model = model;
     }
 
+    public WallGraphics getSketch() {
+        return this.sketch;
+    }
+
     public void setSketch(WallGraphics sketch) {
         this.sketch = sketch;
-    }
-    public WallGraphics getSketch( ) {
-        return this.sketch;
     }
 
     @FXML
@@ -134,7 +139,7 @@ public class WallController {
         this.model.height.bind(txtH1, txtH2, txtH3, txtH4, txtH);
         this.model.width.bind(txtW1, txtW2, txtW3, txtW4, txtW);
         isPP.selectedProperty().bindBidirectional(model.isPPProperty());
-        ArrayList<TextField> tFields = new ArrayList<TextField>();
+        ArrayList<TextField> tFields = new ArrayList<>();
         for (Node node :
                 dataGrid.getChildren()) {
             if (node instanceof TextField)
@@ -155,8 +160,7 @@ public class WallController {
             tf.textProperty().addListener((observableValue, s, t1) -> {
                 if (t1.length() > 0 && (!t1.matches("\\d{0,4}?([.]\\d{0,3})?") || !isNumeric(t1))) {
                     tf.setText(s);
-                } else if (t1.length() == 0) {
-                } else
+                } else if (t1.length() != 0)
                     update();
             });
         btnIterate.setOnAction(event -> {
@@ -199,12 +203,24 @@ public class WallController {
         txtE.setText(String.format("%.2f", model.getEffort()));
         txtAngle.setText(String.format("%.2f", model.getTheta()));
 
+        printWall();
+
+    }
+
+    private void printWall() {
         try {
-            PrintWall.print(PrintWall.createPrintable(this));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("printPane.fxml"));
+            AnchorPane root = fxmlLoader.load();
+            Scene scene = new Scene(root, 600, 600);
+            Stage stage = new Stage();
+
+            stage.setTitle("New Window");
+            stage.setScene(scene);
+            stage.show();
+            ((PrintWall)fxmlLoader.getController()).initData(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 }

@@ -1,23 +1,24 @@
 package wall;
 
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.print.*;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.*;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
-import javafx.stage.Stage;
 
 import java.awt.font.TextAttribute;
 import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
-public class PrintWall {
+public class PrintWall implements Initializable {
     static final String[][] titles = {
             {"משקל מרחבי של הקרקע", "t/m^3", "", "G "},
             {"זזוית חיכוך פנימית", "", "", "φ "},
@@ -30,11 +31,55 @@ public class PrintWall {
             {"עומס מפורס על הקרקע", "", "", "Q "},
             {"משקל מרחבי של הקיר", "", "", "Gw"}
     };
-    final Map<TextAttribute, Integer> fontAttributesUnderLine = new HashMap<TextAttribute, Integer>();
-    final Map<TextAttribute, Boolean> fontAttributeRegular = new HashMap<TextAttribute, Boolean>();
-    public static AnchorPane mainPane;
+    final Map<TextAttribute, Integer> fontAttributesUnderLine = new HashMap<>();
+    final Map<TextAttribute, Boolean> fontAttributeRegular = new HashMap<>();
+    @FXML
+    public AnchorPane mainPane;
+    @FXML
+    public Text txtDate;
+    @FXML
+    public Text txtKa;
+    @FXML
+    public Text txtPa;
+    @FXML
+    public Text txtH;
+    @FXML
+    public Text txtH2;
+    @FXML
+    public Text txtH1;
+    @FXML
+    public Text txtH3;
+    @FXML
+    public Text txtH4;
+    @FXML
+    public Text txtW;
+    public Text txtW4;
+    public Text txtW3;
+    public Text txtW2;
+    public Text txtW1;
+    public Label txtMt1;
+    public Label txtMt2;
+    public Label txtSmt;
+    public Label txtMrv;
+    public Label txtMrw;
+    public Label txtMrs;
+    public Label txtMrq;
+    public Label txtMrp;
+    public Label txtSMr;
+    public Label txtPh;
+    public Label txtQh;
+    public Label txtSh;
+    public Label txtPv;
+    public Label txtVw;
+    public Label txtVs;
+    public Label txtVq;
+    public Label txtPp;
+    private WallController wallC;
 
-    public static void print(Pane node) {
+    public PrintWall() {
+    }
+
+    public void print(Pane node) {
         Printer printer = Printer.getDefaultPrinter();
         PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.PORTRAIT, Printer.MarginType.DEFAULT);
 
@@ -44,7 +89,8 @@ public class PrintWall {
         // node.setTranslateX(pageLayout.getPrintableWidth());
 
         PrinterJob job = PrinterJob.createPrinterJob();
-        if (job != null && job.showPrintDialog(node.getScene().getWindow()) ){
+        if (job != null && job.showPrintDialog(node.getScene().getWindow())) {
+
             boolean success = job.printPage(pageLayout, node);
             if (success) {
                 job.endJob();
@@ -52,26 +98,33 @@ public class PrintWall {
         }
     }
 
+    public Pane createPrintable(WallController wall) throws IOException {
+        Pane h = new Pane();
 
+        return mainPane;
+    }
 
-        public static Pane createPrintable(WallController wall) throws IOException {
-            Pane h = new Pane();
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(PrintWall.class.getResource("printPane.fxml"));
-            AnchorPane root = fxmlLoader.load();
-            /*
-             * if "fx:controller" is not set in fxml
-             * fxmlLoader.setController(NewWindowController);
-             */
-            Scene scene = new Scene(root, 600, 400);
-            Stage stage = new Stage();
-
-            stage.setTitle("New Window");
-            stage.setScene(scene);
-            stage.show();
-
-            return root;
+    public void initData(WallController wall) {
+        try {
+            txtDate.setText(getDateString());
+            txtPa.setText(Double.toString(wall.getModel().getKa()));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+
+    private String getDateString() {
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String text = date.format(formatter);
+        LocalDate parsedDate = LocalDate.parse(text, formatter);
+        return text;
+    }
 
 //        private static void addBasicInfo (WallController wall, GridPane gp){
 //            int r = 0;
@@ -186,4 +239,4 @@ public class PrintWall {
         }
         return line;
     }*/
-    }
+}
